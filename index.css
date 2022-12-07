@@ -1,8 +1,10 @@
 body {
-    margin: 2px;
     background-color: rgb(255, 255, 255);
+    /* border: 3px solid #fab005; */
 }
-
+.mainCity{
+    margin-top: -20px;
+}
 /*  custom css for positioning */
 .center {
     display: flex;
@@ -21,7 +23,7 @@ body {
 
 
 .second{
-    margin-top: 73px;
+    margin-top: 83px;
 }
 
 .list{
@@ -88,13 +90,12 @@ input {
 .bar {
     background-color: #fab005;
     color: black;
-    padding: -10px;
+    border: 3px solid black;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-radius: 3px;
     margin-top: 2px;
-    border: 3px solid black;
     position: fixed;
     top: 0%;
     right: .4%;
@@ -128,7 +129,7 @@ li:hover {
 
 .moon {
     /* background-color: #183153; */
-    background-color: white;
+    background-color: black;
     border-radius: 100px;
     padding: 2px;
 }

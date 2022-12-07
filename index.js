@@ -44,38 +44,38 @@ let month = ["January", "February", "March", "April", "May", "June", "July", "Au
 let date = document.querySelector('.date');
 let datetime = new Date();
 date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear()
-
-let index = 0;
-if (index == 0) {
-    DisplayInfo('Nainital');
-    index = 1;
-}
-let button = document.querySelector('.button');
-button.addEventListener('click', () => {
-    let cityName = document.querySelector('.input')
-    let city = cityName.value;
-    DisplayInfo(city);
-})
-
-let moon = document.querySelector('.moon');
-let link = document.querySelector('.link');
-let navbar = document.querySelector('.bar');
-let check = 1;
-moon.addEventListener('click', function (e) {
-    if (check % 2 != 0) {
-        navbar.style.fontWeight = '900'
-        moon.innerHTML = '☀️';
-        check++;
-        document.body.style.color = 'white';
-        document.body.style.background = 'black';
-        document.body.button.style.color = '#183153';
+let align = document.querySelector('.align');
+    console.log("loaded");
+    let index = 0;
+    if (index == 0) {
+        DisplayInfo('Nainital');
+        index = 1;
     }
-    else {
-        navbar.style.fontWeight = '500'
-        moon.innerHTML = '🌑';
-        check++;
-        document.body.style.color = 'black';
-        document.body.style.background = 'white';
-        document.body.button.style.color = '#183153';
-    }
-})
+    let button = document.querySelector('.button');
+    button.addEventListener('click', () => {
+        let cityName = document.querySelector('.input')
+        let city = cityName.value;
+        DisplayInfo(city);
+    })
+    
+    let moon = document.querySelector('.moon');
+    let navbar = document.querySelector('.bar');
+    let check = 1;
+    moon.addEventListener('click', function (e) {
+        if (check % 2 != 0) {
+            navbar.style.border = '3px solid white';
+            moon.innerHTML = '☀️';
+            check++;
+            document.body.style.color = 'white';
+            document.body.style.background = 'black';
+            document.body.button.style.color = '#183153';
+        }
+        else {
+            navbar.style.border = '3px solid black';
+            moon.innerHTML = '🌑';
+            check++;
+            document.body.style.color = 'black';
+            document.body.style.background = 'white';
+            document.body.button.style.color = '#183153';
+        }
+    })
