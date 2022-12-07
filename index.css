@@ -53,7 +53,7 @@ input{
     margin:10px 30px;
     padding: 10px 50px;
     width: 240px;
-    height: 130px;
+    height: 180px;
 }
 .info{
     margin-top: 12px;
@@ -65,4 +65,15 @@ input{
 .bar{
     background-color: black;
     color: white;
+}
+.other_info{
+    margin-top: 23px;
+}
+.aligns2, .aligns5, .aligns7{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+a{
+    color: white;
+    text-decoration: none;
 }
