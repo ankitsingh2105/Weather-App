@@ -1,45 +1,53 @@
-body{
+body {
     margin: 2px;
     background-color: rgb(224, 219, 219);
 }
+
 /*  custom css for positioning */
-.center{
+.center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.center2{
+
+.center2 {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 /* .list{
     justify-content: flex-start;
 } */
-.inList{
+.inList {
     list-style: none;
-    margin:20px 18px;
+    margin: 20px 18px;
     padding: 0px 12px;
     font-size: 20px;
 }
-.align{
+
+.align {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-h1{
+
+h1 {
     font-size: 44px;
 }
-h2{
+
+h2 {
     font-size: 34px;
 }
-input{
+
+input {
     padding: 6px;
     font-size: 14px;
 }
-.heading{
+
+.heading {
     font-size: 24px;
     display: flex;
     align-items: center;
@@ -47,33 +55,76 @@ input{
     width: 100%;
     /* border: 1px solid black; */
 }
-.sun , .temp , .wind{
+
+.sun,
+.temp,
+.wind {
     /* margin-top: ; */
     border: 1px solid gray;
-    margin:10px 30px;
-    padding: 10px 50px;
-    width: 240px;
+    margin: 10px 30px;
+    padding: 10px 10px;
+    width: 290px;
     height: 180px;
 }
-.info{
+
+.info {
     margin-top: 12px;
     font-size: 24px;
 }
-.Child{
+
+.Child {
     font-size: 50px;
 }
-.bar{
+
+.bar {
     background-color: black;
     color: white;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    border-radius:3px ;
+    margin-top: 2px;
 }
-.other_info{
+.bar :last-child{
+    margin-left: auto;
+}
+
+.other_info {
     margin-top: 23px;
 }
-.aligns2, .aligns5, .aligns7{
+
+.aligns2,
+.aligns5,
+.aligns7 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-a{
+
+a {
     color: white;
     text-decoration: none;
+}
+
+@media screen and (min-width: 870px) {
+    .align{
+        flex-direction: row;
+    }
+}
+li:hover{
+    cursor: pointer;
+}
+button{
+    background-color: #fab005;
+    border: 1px solid black;
+    box-shadow:2px 3px 2px #183153 ;
+    border-radius:3px;
+    font-size: 15px;
+    padding: 2px 7px;
+    color: #183153;
+}
+input{
+    background-color: white;
+    border: 1px solid black;
+    box-shadow:2px 3px 2px #183153 ;
+    border-radius:3px;
 }

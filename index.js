@@ -24,18 +24,23 @@ const DisplayInfo = (city) => {
     fetch(url, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response);
-            console.log(response);
-            // cityname.innerHTML = city
-            align1.innerHTML = "Max Temperature: " + response.max_temp;
-            align2.innerHTML = "Min Temperature: " + response.min_temp;
-            align4.innerHTML = "Wind Degree: " + response.wind_degrees;
-            align5.innerHTML = "Wind Speed: " + response.wind_speed;
-            align7.innerHTML = "Feels Like: " + response.feels_like;
-            align8.innerHTML = "Cloud_pct: " + response.cloud_pct;
-            info3.innerHTML = response.humidity + '%';
-            info1.innerHTML = response.temp + '°C';
-            info2.innerHTML = response.wind_speed + ' km/h';
+            if (response.max_temp === undefined) {
+                window.alert('Please enter a valid city or country name')
+            }
+            else {
+                console.log(response);
+                console.log(response);
+                // cityname.innerHTML = city
+                align1.innerHTML = "Max Temperature: " + response.max_temp + '°C';
+                align2.innerHTML = "Min Temperature: " + response.min_temp + '°C';
+                align4.innerHTML = "Wind Degree: " + response.wind_degrees + '°';
+                align5.innerHTML = "Wind Speed: " + response.wind_speed + ' km/h';
+                align7.innerHTML = "Feels Like: " + response.feels_like;
+                align8.innerHTML = "Cloud_pct: " + response.cloud_pct;
+                info3.innerHTML = response.humidity + '%';
+                info1.innerHTML = response.temp + '°C';
+                info2.innerHTML = response.wind_speed + ' km/h';
+            }
         })
         .catch(err => console.error(err));
 }
@@ -53,4 +58,33 @@ button.addEventListener('click', () => {
     let city = cityName.value;
     console.log("here i am making another project", city)
     DisplayInfo(city);
+})
+
+let moon = document.querySelector('.moon');
+let link = document.querySelector('.link');
+let navbar = document.querySelector('.bar');
+let check = 1;
+moon.addEventListener('click', function (e) {
+    if (check % 2 != 0) {
+        document.body.style.background = 'black';
+        navbar.style.background = 'white'
+        navbar.style.color = 'black'
+        link.style.color = 'black';
+        document.body.style.color = 'white';
+        navbar.style.fontWeight = '900'
+        check++;
+        moon.innerHTML = '☀️';
+        document.body.button.style.color = '#183153';
+    }
+    else {
+        document.body.style.background = 'white';
+        document.body.button.style.color = '#183153';
+        document.body.style.color = 'black';
+        navbar.style.background = 'black'
+        link.style.color = 'white';
+        navbar.style.color = 'white'
+        navbar.style.fontWeight = '500'
+        moon.innerHTML = '🌑';
+        check++;
+    }
 })
