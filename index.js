@@ -13,13 +13,10 @@ const DisplayInfo = (city) => {
     let info3 = document.querySelector('.info3');
     let align1 = document.querySelector('.aligns1');
     let align2 = document.querySelector('.aligns2');
-    // let align3 = document.querySelector('.aligns3');
     let align4 = document.querySelector('.aligns4');
     let align5 = document.querySelector('.aligns5');
-    // let align6 = document.querySelector('.aligns6');
     let align7 = document.querySelector('.aligns7');
     let align8 = document.querySelector('.aligns8');
-    // let align9 = document.querySelector('.aligns9');
     fetch(url, options)
         .then(response => response.json())
         .then(response => {
@@ -28,9 +25,6 @@ const DisplayInfo = (city) => {
             }
             else {
                 cityname.innerHTML = city;
-                console.log(response);
-                console.log(response);
-                // cityname.innerHTML = city
                 align1.innerHTML = "Max Temperature: " + response.max_temp + '°C';
                 align2.innerHTML = "Min Temperature: " + response.min_temp + '°C';
                 align4.innerHTML = "Wind Degree: " + response.wind_degrees + '°';
@@ -49,22 +43,17 @@ let dayArray = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturda
 let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let date = document.querySelector('.date');
 let datetime = new Date();
-let list = [];
-console.log(datetime.getDate());
 date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear()
 
 let index = 0;
-console.log("entered 1");
 if (index == 0) {
     DisplayInfo('Haldwani');
     index = 1;
 }
-
 let button = document.querySelector('.button');
 button.addEventListener('click', () => {
     let cityName = document.querySelector('.input')
     let city = cityName.value;
-    console.log("here i am making another project", city)
     DisplayInfo(city);
 })
 

@@ -127,7 +127,8 @@ li:hover {
 }
 
 .moon {
-    background-color: #183153;
+    /* background-color: #183153; */
+    background-color: white;
     border-radius: 100px;
     padding: 2px;
 }
