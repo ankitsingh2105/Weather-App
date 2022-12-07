@@ -21,12 +21,12 @@ const DisplayInfo = (city) => {
     let align8 = document.querySelector('.aligns8');
     // let align9 = document.querySelector('.aligns9');
     fetch(url, options)
-    .then(response => response.json())
-    .then(response => {
-        if (response.max_temp === undefined) {
-            window.alert('Please enter a valid city or country name')
-        }
-        else {
+        .then(response => response.json())
+        .then(response => {
+            if (response.max_temp === undefined) {
+                window.alert('Please enter a valid city or country name')
+            }
+            else {
                 cityname.innerHTML = city;
                 console.log(response);
                 console.log(response);
@@ -44,6 +44,15 @@ const DisplayInfo = (city) => {
         })
         .catch(err => console.error(err));
 }
+
+let dayArray = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
+let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let date = document.querySelector('.date');
+let datetime = new Date();
+let list = [];
+console.log(datetime.getDate());
+date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear()
+
 let index = 0;
 console.log("entered 1");
 if (index == 0) {
@@ -65,24 +74,16 @@ let navbar = document.querySelector('.bar');
 let check = 1;
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
-        navbar.style.background = '#fab005';
-        navbar.style.color = 'black';
-        link.style.color = 'black';
         navbar.style.fontWeight = '900'
         moon.innerHTML = '☀️';
-        moon.style.background='black'
         check++;
         document.body.style.color = 'white';
         document.body.style.background = 'black';
         document.body.button.style.color = '#183153';
     }
     else {
-        navbar.style.background = 'black'
-        link.style.color = 'white';
-        navbar.style.color = 'white'
         navbar.style.fontWeight = '500'
         moon.innerHTML = '🌑';
-        moon.style.background='#183153'
         check++;
         document.body.style.color = 'black';
         document.body.style.background = 'white';
