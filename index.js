@@ -9,7 +9,6 @@ const DisplayInfo = (city) => {
     };
     let info1 = document.querySelector('.info1');
     let cityname = document.querySelector('.city');
-    cityname.innerHTML = city;
     let info2 = document.querySelector('.info2');
     let info3 = document.querySelector('.info3');
     let align1 = document.querySelector('.aligns1');
@@ -22,12 +21,13 @@ const DisplayInfo = (city) => {
     let align8 = document.querySelector('.aligns8');
     // let align9 = document.querySelector('.aligns9');
     fetch(url, options)
-        .then(response => response.json())
-        .then(response => {
-            if (response.max_temp === undefined) {
-                window.alert('Please enter a valid city or country name')
-            }
-            else {
+    .then(response => response.json())
+    .then(response => {
+        if (response.max_temp === undefined) {
+            window.alert('Please enter a valid city or country name')
+        }
+        else {
+                cityname.innerHTML = city;
                 console.log(response);
                 console.log(response);
                 // cityname.innerHTML = city
@@ -44,7 +44,6 @@ const DisplayInfo = (city) => {
         })
         .catch(err => console.error(err));
 }
-
 let index = 0;
 console.log("entered 1");
 if (index == 0) {
@@ -71,6 +70,7 @@ moon.addEventListener('click', function (e) {
         link.style.color = 'black';
         navbar.style.fontWeight = '900'
         moon.innerHTML = '☀️';
+        moon.style.background='black'
         check++;
         document.body.style.color = 'white';
         document.body.style.background = 'black';
@@ -82,6 +82,7 @@ moon.addEventListener('click', function (e) {
         navbar.style.color = 'white'
         navbar.style.fontWeight = '500'
         moon.innerHTML = '🌑';
+        moon.style.background='#183153'
         check++;
         document.body.style.color = 'black';
         document.body.style.background = 'white';
