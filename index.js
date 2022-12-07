@@ -47,7 +47,7 @@ date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + '
 
 let index = 0;
 if (index == 0) {
-    DisplayInfo('Haldwani');
+    DisplayInfo('Nainital');
     index = 1;
 }
 let button = document.querySelector('.button');
