@@ -66,25 +66,25 @@ let navbar = document.querySelector('.bar');
 let check = 1;
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
-        document.body.style.background = 'black';
-        navbar.style.background = 'white'
-        navbar.style.color = 'black'
+        navbar.style.background = '#fab005';
+        navbar.style.color = 'black';
         link.style.color = 'black';
-        document.body.style.color = 'white';
         navbar.style.fontWeight = '900'
-        check++;
         moon.innerHTML = '☀️';
+        check++;
+        document.body.style.color = 'white';
+        document.body.style.background = 'black';
         document.body.button.style.color = '#183153';
     }
     else {
-        document.body.style.background = 'white';
-        document.body.button.style.color = '#183153';
-        document.body.style.color = 'black';
         navbar.style.background = 'black'
         link.style.color = 'white';
         navbar.style.color = 'white'
         navbar.style.fontWeight = '500'
         moon.innerHTML = '🌑';
         check++;
+        document.body.style.color = 'black';
+        document.body.style.background = 'white';
+        document.body.button.style.color = '#183153';
     }
 })

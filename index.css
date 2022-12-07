@@ -105,13 +105,13 @@ a {
     text-decoration: none;
 }
 
-@media screen and (min-width: 870px) {
-    .align{
-        flex-direction: row;
-    }
-}
 li:hover{
     cursor: pointer;
+}
+.moon{
+    background-color: black;
+    border-radius: 100px;
+    padding:1px;
 }
 button{
     background-color: #fab005;
@@ -128,3 +128,8 @@ input{
     box-shadow:2px 3px 2px #183153 ;
     border-radius:3px;
 }
+    @media screen and (min-width: 870px) {
+        .align{
+            flex-direction: row;
+        }
+    }
