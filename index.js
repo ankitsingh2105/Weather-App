@@ -33,10 +33,10 @@ function display_Search() {
             }).then((elem) => {
                 displayInfo.innerHTML += `
                             <div class="indexhead2">
-                                <div class="ingrid center cityplus">${e}</div>
-                                <div class="ingrid center tempplus">${elem.temp}°C</div>
-                                <div class="ingrid center windplus">${elem.wind_speed}km/h</div>
-                                <div class="ingrid center humplus">${elem.humidity}%</div>
+                            <div class="ingrid center cityplus">${e}</div>
+                            <div class="ingrid center tempplus">${elem.temp}°C</div>
+                            <div class="ingrid center windplus">${elem.wind_speed}km/h</div>
+                            <div class="ingrid center humplus">${elem.humidity}%</div>
                             </div>`
             })
         })
@@ -120,7 +120,7 @@ async function display() {
             check++;
             document.body.style.color = 'white';
             document.body.style.background = 'black';
-            document.body.button.style.color = '#183153';
+            // document.body.button.style.color = '#183153';
         }
         else {
             navbar.style.border = '3px solid black';
@@ -128,10 +128,12 @@ async function display() {
             check++;
             document.body.style.color = 'black';
             document.body.style.background = 'white';
-            document.body.button.style.color = '#183153';
+            // document.body.button.style.color = '#183153';
         }
     })
 }
+let clear = document.getElementById('clearButton');
+let prevInfo1 = document.querySelector('.prevInfo1');
 async function show() {
     await display();
 }
