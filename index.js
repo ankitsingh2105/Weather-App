@@ -57,10 +57,12 @@ async function display() {
                 index = 1;
             }
                 let button = document.querySelector('.button');
+                let input = document.querySelector('.input');
                 button.addEventListener('click', () => {
                     let cityName = document.querySelector('.input')
                     let city = cityName.value;
                     DisplayInfo(city);
+                    input.value='';
                 })
     
                 let moon = document.querySelector('.moon');
