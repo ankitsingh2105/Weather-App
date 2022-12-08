@@ -39,7 +39,7 @@ body {
 
 
 .second{
-    margin-top: 83px;
+    margin-top: 43px;
 }
 
 .list{
@@ -167,7 +167,18 @@ input {
     border-radius: 3px;
 }
 
-
+.head2{
+    margin-top: -40px;
+}
+@media screen and (min-width: 453px) {
+    .headers{
+        flex-direction: row;
+    }
+    .head2 {
+        margin-top: 36px;
+        margin-left: 13px;
+    }
+}
 @media screen and (min-width: 870px) {
     .align {
         flex-direction: row;
