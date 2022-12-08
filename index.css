@@ -184,3 +184,26 @@ input {
         flex-direction: row;
     }
 }
+
+/* local Storage part */
+
+.indexhead{
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    margin-top: 60px;
+    justify-content: space-evenly;
+    background-color: #fab005;
+    padding: 12px;
+    font-weight: bolder;
+    color: black;
+    border: 2px solid black;
+}
+.indexhead2{
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    justify-content: space-evenly;
+    margin: 20px 0px;
+}
+.cityplus{
+    font-weight: bolder;
+}
