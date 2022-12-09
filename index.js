@@ -13,32 +13,27 @@ if (prevSearches !== null) {
 else {
     array = [];
 }
-function removeDuplicates(arr) {
-    return [...new Set(arr)];
+function getUniqueListBy(arr, key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 function display_Search() {
+    // localStorage.clear()
     let check = localStorage.getItem('prevSearches');
     if (check !== null) {
         let newArray = [];
         newArray = JSON.parse(localStorage.getItem('prevSearches'))
         let displayInfo = document.querySelector('.prevInfo1');
         newArray.forEach((e) => {
-            let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${e}`
-            fetch(url, options).then((elem) => {
-                return elem.json();
-            }).then((elem) => {
-                displayInfo.innerHTML += `
+            displayInfo.innerHTML += `
                             <div class="indexhead2">
-                            <div class="ingrid center cityplus">${e}</div>
-                            <div class="ingrid center tempplus">${elem.temp}°C</div>
-                            <div class="ingrid center windplus">${elem.wind_speed}km/h</div>
-                            <div class="ingrid center humplus">${elem.humidity}%</div>
+                            <div class="ingrid center cityplus">${e.place}</div>
+                            <div class="ingrid center tempplus">${e.temperature}°C</div>
+                            <div class="ingrid center windplus">${e.wind}km/h</div>
+                            <div class="ingrid center humplus">${e.humidity}%</div>
                             </div>`
-            })
         })
     }
 }
@@ -67,8 +62,15 @@ async function display() {
             }
             else {
                 city = capitalizeFirstLetter(city);
-                array.push((city));
-                array = removeDuplicates(array);
+                // array.push((city));
+                array.push({
+                    "place": city,
+                    "temperature": data.temp,
+                    "wind": data.wind_speed,
+                    "humidity": data.humidity
+                })
+                console.log("this is the array-> ", array);
+                array = getUniqueListBy(array , "place");
                 localStorage.setItem('prevSearches', JSON.stringify(array));
                 cityname.innerHTML = city;
                 align1.innerHTML = "Max Temperature: " + data.max_temp + '°C';
