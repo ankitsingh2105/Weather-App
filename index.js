@@ -1,3 +1,4 @@
+console.log("Welcome Inspector! ✨")
 let prevSearches = localStorage.getItem('prevSearches');
 let array = [];
 const options = {
@@ -12,7 +13,6 @@ if (prevSearches !== null) {
 }
 else {
     array = [];
-    // 942,1649
 }
 function getUniqueListBy(arr, key) {
     return [...new Map(arr.map(item => [item[key], item])).values()]
@@ -89,7 +89,6 @@ async function display() {
                 if (city === 'Nainital') {
                     localStorage.setItem('defaultPlace', JSON.stringify(array));
                 }
-                console.log("this is the array-> ", array);
                 array = getUniqueListBy(array, "place");
                 localStorage.setItem('prevSearches', JSON.stringify(array));
                 cityname.innerHTML = city;
