@@ -77,7 +77,7 @@ const DisplayInfo = async (city) => {
     loadingSection.style.display = 'flex';
     let res = await fetch(url, options);
     let data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (data.max_temp === undefined) {
         window.alert('OOPS! The input not present in Database')
     }
