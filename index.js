@@ -75,18 +75,20 @@ const DisplayInfo = async (city) => {
     let align8 = document.querySelector('.aligns8');
     align.style.display = 'none';
     loadingSection.style.display = 'flex';
-    let res = await fetch(url, options);
-    let data = await res.json();
-    console.log(data);
-    if (data.max_temp === undefined) {
-        window.alert('OOPS! The input not present in Database')
-    }
-    else {
-        city = capitalizeFirstLetter(city);
-        array.push({
-            "place": city,
-            "temperature": data.temp,
-            "wind": data.wind_speed,
+    let res =  fetch(url, options);
+    // let data =  res.json();
+    res.then((op)=>{return op.json()}).then((data)=>{
+
+        console.log(data);
+        if (data.max_temp === undefined) {
+            window.alert('OOPS! The input not present in Database')
+        }
+        else {
+            city = capitalizeFirstLetter(city);
+            array.push({
+                "place": city,
+                "temperature": data.temp,
+                "wind": data.wind_speed,
             "humidity": data.humidity
         })
         if (city === 'Nainital') {
@@ -105,6 +107,7 @@ const DisplayInfo = async (city) => {
         info1.innerHTML = data.temp + '°C';
         info2.innerHTML = data.wind_speed + ' km/h';
     }
+})
     let clear = document.querySelector('.prevInfo1');
     clear.innerHTML = '';
     align.style.display = 'flex';
