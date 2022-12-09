@@ -12,6 +12,7 @@ if (prevSearches !== null) {
 }
 else {
     array = [];
+    // 942,1649
 }
 function getUniqueListBy(arr, key) {
     return [...new Map(arr.map(item => [item[key], item])).values()]
@@ -19,6 +20,23 @@ function getUniqueListBy(arr, key) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+let clearLocaldata = document.querySelector('#clearButton');
+clearLocaldata.addEventListener('click', function () {
+    let displayInfo = document.querySelector('.prevInfo1');
+    let defaultCity = localStorage.getItem('defaultPlace')
+    let defArray = [];
+    defArray = JSON.parse(defaultCity);
+    defArray.forEach((e) => {
+        displayInfo.innerHTML = `
+        <div class="indexhead2">
+        <div class="ingrid center cityplus">${e.place}</div>
+        <div class="ingrid center tempplus">${e.temperature}°C</div>
+        <div class="ingrid center windplus">${e.wind}km/h</div>
+        <div class="ingrid center humplus">${e.humidity}%</div>
+        </div>`
+    })
+    localStorage.clear();
+})
 function display_Search() {
     // localStorage.clear()
     let check = localStorage.getItem('prevSearches');
@@ -62,15 +80,17 @@ async function display() {
             }
             else {
                 city = capitalizeFirstLetter(city);
-                // array.push((city));
                 array.push({
                     "place": city,
                     "temperature": data.temp,
                     "wind": data.wind_speed,
                     "humidity": data.humidity
                 })
+                if (city === 'Nainital') {
+                    localStorage.setItem('defaultPlace', JSON.stringify(array));
+                }
                 console.log("this is the array-> ", array);
-                array = getUniqueListBy(array , "place");
+                array = getUniqueListBy(array, "place");
                 localStorage.setItem('prevSearches', JSON.stringify(array));
                 cityname.innerHTML = city;
                 align1.innerHTML = "Max Temperature: " + data.max_temp + '°C';
@@ -122,7 +142,6 @@ async function display() {
             check++;
             document.body.style.color = 'white';
             document.body.style.background = 'black';
-            // document.body.button.style.color = '#183153';
         }
         else {
             navbar.style.border = '3px solid black';
@@ -130,7 +149,6 @@ async function display() {
             check++;
             document.body.style.color = 'black';
             document.body.style.background = 'white';
-            // document.body.button.style.color = '#183153';
         }
     })
 }
