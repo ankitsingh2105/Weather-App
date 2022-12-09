@@ -8,6 +8,8 @@ const options = {
         'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
     }
 };
+
+	
 if (prevSearches !== null) {
     array = JSON.parse(prevSearches);
 }
@@ -75,6 +77,7 @@ async function display() {
             loadingSection.style.display = 'flex';
             let res = await fetch(url, options);
             let data = await res.json();
+            console.log(data);
             if (data.max_temp === undefined) {
                 window.alert('OOPS! The input not present in Database')
             }
@@ -92,12 +95,12 @@ async function display() {
                 array = getUniqueListBy(array, "place");
                 localStorage.setItem('prevSearches', JSON.stringify(array));
                 cityname.innerHTML = city;
-                align1.innerHTML = "Max Temperature: " + data.max_temp + '°C';
-                align2.innerHTML = "Min Temperature: " + data.min_temp + '°C';
-                align4.innerHTML = "Wind Degree: " + data.wind_degrees + '°';
-                align5.innerHTML = "Wind Speed: " + data.wind_speed + ' km/h';
-                align7.innerHTML = "Feels Like: " + data.feels_like;
-                align8.innerHTML = "Cloud_pct: " + data.cloud_pct;
+                align1.innerHTML = "<strong>Max Temperature</strong>: " + data.max_temp + '°C';
+                align2.innerHTML = "<strong>Min Temperature</strong>: " + data.min_temp + '°C';
+                align4.innerHTML = "<strong>Wind Degree</strong>: " + data.wind_degrees + '°';
+                align5.innerHTML = "<strong>Wind Speed</strong>: " + data.wind_speed + ' km/h';
+                align7.innerHTML = "<strong>Feels Like</strong>: " + data.feels_like;
+                align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.cloud_pct+"%";
                 info3.innerHTML = data.humidity + '%';
                 info1.innerHTML = data.temp + '°C';
                 info2.innerHTML = data.wind_speed + ' km/h';

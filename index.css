@@ -58,6 +58,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-top: -20px;
 }
 
 h1 {
@@ -89,7 +90,7 @@ input {
     border: 1px solid gray;
     margin: 10px 30px;
     padding: 10px 10px;
-    width: 290px;
+    width: 310px;
     height: 180px;
     box-shadow: 6px 5px 10px black;
 }
@@ -184,6 +185,18 @@ input {
         flex-direction: row;
     }
 }
+.links{
+    font-size: 33px;
+    margin:30px 30px 25px 30px;
+}
+.links1{
+    font-size: 33px;
+    margin-top: 25px;
+}
+/* .socials{
+    background-color: #fab005;
+    border: 2px solid black;
+} */
 
 /* local Storage part */
 
