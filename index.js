@@ -136,17 +136,20 @@ async function display() {
 
     let moon = document.querySelector('.moon');
     let navbar = document.querySelector('.bar');
+    let github =  document.querySelector('.fa-github');
     let check = 1;
     moon.addEventListener('click', function (e) {
         if (check % 2 != 0) {
             navbar.style.border = '3px solid white';
             moon.innerHTML = '☀️';
             check++;
+            github.style.color='white';
             document.body.style.color = 'white';
             document.body.style.background = 'black';
         }
         else {
             navbar.style.border = '3px solid black';
+            github.style.color='black';
             moon.innerHTML = '🌑';
             check++;
             document.body.style.color = 'black';
