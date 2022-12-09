@@ -75,11 +75,13 @@ const DisplayInfo = async (city) => {
     let align8 = document.querySelector('.aligns8');
     align.style.display = 'none';
     loadingSection.style.display = 'flex';
+    // console.log(data);
     let res = await fetch(url, options);
     let data = await res.json();
-    // console.log(data);
+    console.log("this is data -> ", data)
     if (data.max_temp === undefined) {
-        window.alert('OOPS! The input not present in Database')
+        console.log("this is the city->  ", city)
+        // window.alert('OOPS! The input not present in Database -', city, " -")
     }
     else {
         city = capitalizeFirstLetter(city);
@@ -150,4 +152,7 @@ moon.addEventListener('click', function (e) {
         document.body.style.color = 'black';
         document.body.style.background = 'white';
     }
+})
+fetch('https://kontests.net/api/v1/codeforces').then((e) => { return e.json() }).then((e) => {
+    console.log(e)
 })
