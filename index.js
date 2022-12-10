@@ -1,6 +1,5 @@
 console.log("Welcome Inspector! ✨");
 let prevSearches = localStorage.getItem('prevSearches');
-let famousPlaces = document.querySelector('.famousPlaces');
 let array = [];
 const options = {
     method: 'GET',
@@ -88,7 +87,8 @@ const DisplayInfo = async (city) => {
             "wind": data.wind_speed,
             "humidity": data.humidity
         })
-        if (city === 'Nainital') {
+        let defaultPlace = localStorage.getItem('defaultPlace');
+        if (defaultPlace === null) {
             localStorage.setItem('defaultPlace', JSON.stringify(array));
         }
         array = getUniqueListBy(array, "place");
@@ -110,28 +110,16 @@ const DisplayInfo = async (city) => {
     loadingSection.style.display = 'none';
     display_Search();
 }
+
+//  async ended  ✨✨✨✨✨✨
+
+
 let date = document.querySelector('.date');
 let datetime = new Date();
 date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear();
+
 let index = 0;
 if (index == 0) {
-    let warmPlaces = ["Goa" , "Chennai" , "Gujrat" , "Pondicherry" , "Mumbai" , "Jaisalmer" , "Kochi" , "Hyderabad"];
-    warmPlaces.forEach((city)=>{
-        let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}` 
-        fetch(url , options).then((e)=>{
-            return e.json();
-        })
-        .then((e)=>{
-            famousPlaces.innerHTML+=`
-            <div class="indexhead2">
-            <div class="ingrid center cityplus">${city}</div>
-            <div class="ingrid center tempplus">${e.temp}°C</div>
-            <div class="ingrid center windplus">${e.wind_speed}km/h</div>
-            <div class="ingrid center humplus">${e.humidity}%</div>
-            </div>
-            `
-        })
-    })
     DisplayInfo('Nainital');
     index = 1;
 }
@@ -153,23 +141,68 @@ moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
         navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
+        moon.style.background = 'rgb(159, 218, 240)'
         check++;
         github.style.color = 'white';
-        indexhead[0].style.border= '3px solid white';
-        indexhead[1].style.border= '3px solid white';
+        indexhead[0].style.border = '3px solid white';
+        indexhead[1].style.border = '3px solid white';
         document.body.style.color = 'white';
         document.body.style.background = 'black';
     }
     else {
         navbar.style.border = '3px solid black';
         github.style.color = 'black';
+        moon.style.background = 'black'
         moon.innerHTML = '🌑';
         check++;
-        indexhead[0].style.border= '3px solid black';
-        indexhead[1].style.border= '3px solid black';
+        indexhead[0].style.border = '3px solid black';
+        indexhead[1].style.border = '3px solid black';
         document.body.style.color = 'black';
         document.body.style.background = 'white';
     }
 })
 
 
+
+
+//  showing warm places  ✨✨✨✨✨✨
+
+function disply_warm() {
+    let showArray = [];
+    showArray = JSON.parse(localStorage.getItem("warm"));
+    showArray.forEach((e) => {
+        famousPlaces.innerHTML += `
+            <div class="indexhead2">
+            <div class="ingrid center cityplus">${e.place}</div>
+            <div class="ingrid center tempplus">${e.temperature}°C</div>
+            <div class="ingrid center windplus">${e.wind}km/h</div>
+            <div class="ingrid center humplus">${e.humidity}%</div>
+            </div>
+            `
+        })
+}
+let test = 0;
+let famousPlaces = document.querySelector('.famousPlaces');
+if (test === 0) {
+    let warmArray = [];
+    let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
+    warmPlaces.forEach(element => {
+        let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${element}`
+        fetch(url, options).then((e) => { return e.json() }).then((e) => {
+            warmArray.push({
+                "place": element,
+                "temperature": e.temp,
+                "wind": e.wind_speed,
+                "humidity": e.humidity
+            })
+            localStorage.setItem("warm", JSON.stringify(warmArray), "4");
+        })
+    });
+    disply_warm();
+    test = 1;
+}
+else {
+    disply_warm();
+}
+
+    //  warm places ended ✨✨✨✨✨✨
