@@ -1,5 +1,6 @@
 console.log("Welcome Inspector! ✨");
 let prevSearches = localStorage.getItem('prevSearches');
+let famousPlaces = document.querySelector('.famousPlaces');
 let array = [];
 const options = {
     method: 'GET',
@@ -42,7 +43,6 @@ clearLocaldata.addEventListener('click', function () {
     localStorage.clear();
 })
 function display_Search() {
-    // localStorage.clear()
     let check = localStorage.getItem('prevSearches');
     if (check !== null) {
         let newArray = [];
@@ -75,13 +75,10 @@ const DisplayInfo = async (city) => {
     let align8 = document.querySelector('.aligns8');
     align.style.display = 'none';
     loadingSection.style.display = 'flex';
-    // console.log(data);
     let res = await fetch(url, options);
     let data = await res.json();
-    console.log("this is data -> ", data)
     if (data.max_temp === undefined) {
-        console.log("this is the city->  ", city)
-        // window.alert('OOPS! The input not present in Database -', city, " -")
+        window.alert('OOPS! The input is not present in the Database -', city, " -")
     }
     else {
         city = capitalizeFirstLetter(city);
@@ -117,8 +114,24 @@ let date = document.querySelector('.date');
 let datetime = new Date();
 date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear();
 let index = 0;
-
 if (index == 0) {
+    let warmPlaces = ["Goa" , "Chennai" , "Gujrat" , "Pondicherry" , "Mumbai" , "Jaisalmer" , "Kochi" , "Hyderabad"];
+    warmPlaces.forEach((city)=>{
+        let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}` 
+        fetch(url , options).then((e)=>{
+            return e.json();
+        })
+        .then((e)=>{
+            famousPlaces.innerHTML+=`
+            <div class="indexhead2">
+            <div class="ingrid center cityplus">${city}</div>
+            <div class="ingrid center tempplus">${e.temp}°C</div>
+            <div class="ingrid center windplus">${e.wind_speed}km/h</div>
+            <div class="ingrid center humplus">${e.humidity}%</div>
+            </div>
+            `
+        })
+    })
     DisplayInfo('Nainital');
     index = 1;
 }
@@ -133,6 +146,8 @@ button.addEventListener('click', () => {
 
 let moon = document.querySelector('.moon');
 let navbar = document.querySelector('.bar');
+let indexhead = document.getElementsByClassName('indexhead');
+console.log(indexhead);
 let github = document.querySelector('.fa-github');
 let check = 1;
 moon.addEventListener('click', function (e) {
@@ -141,6 +156,8 @@ moon.addEventListener('click', function (e) {
         moon.innerHTML = '☀️';
         check++;
         github.style.color = 'white';
+        indexhead[0].style.border= '3px solid white';
+        indexhead[1].style.border= '3px solid white';
         document.body.style.color = 'white';
         document.body.style.background = 'black';
     }
@@ -149,10 +166,11 @@ moon.addEventListener('click', function (e) {
         github.style.color = 'black';
         moon.innerHTML = '🌑';
         check++;
+        indexhead[0].style.border= '3px solid black';
+        indexhead[1].style.border= '3px solid black';
         document.body.style.color = 'black';
         document.body.style.background = 'white';
     }
 })
-fetch('https://kontests.net/api/v1/codeforces').then((e) => { return e.json() }).then((e) => {
-    console.log(e)
-})
+
+
