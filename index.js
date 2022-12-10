@@ -11,7 +11,17 @@ const options = {
 
 let dayArray = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
 let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var span = document.getElementById('span');
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
 
+setInterval(time, 1000);
 if (prevSearches !== null) {
     array = JSON.parse(prevSearches);
 }
