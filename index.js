@@ -147,7 +147,6 @@ button.addEventListener('click', () => {
 let moon = document.querySelector('.moon');
 let navbar = document.querySelector('.bar');
 let indexhead = document.getElementsByClassName('indexhead');
-console.log(indexhead);
 let github = document.querySelector('.fa-github');
 let check = 1;
 moon.addEventListener('click', function (e) {
