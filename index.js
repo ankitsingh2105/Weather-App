@@ -31,6 +31,7 @@ clearLocaldata.addEventListener('click', function () {
     let defaultCity = localStorage.getItem('defaultPlace')
     let defArray = [];
     defArray = JSON.parse(defaultCity);
+    localStorage.clear();
     defArray.forEach((e) => {
         displayInfo.innerHTML = `
         <div class="indexhead2">
@@ -40,7 +41,6 @@ clearLocaldata.addEventListener('click', function () {
         <div class="ingrid center humplus">${e.humidity}%</div>
         </div>`
     })
-    localStorage.clear();
 })
 function display_Search() {
     let check = localStorage.getItem('prevSearches');
