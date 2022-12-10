@@ -1,6 +1,10 @@
 body {
     margin: 0px;
 }
+img{
+    height: 40px;
+    width: 40px;
+}
 .loadingSection{
     margin-top: 93px;
 }
@@ -47,7 +51,7 @@ body {
 .inList {
     list-style: none;
     font-weight: bolder;
-    margin: 20px 18px;
+    margin: 10px 18px;
     padding: 0px 12px;
     font-size: 18px;
 }

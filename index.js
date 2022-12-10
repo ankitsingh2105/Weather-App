@@ -151,7 +151,7 @@ let github = document.querySelector('.fa-github');
 let check = 1;
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
-        navbar.style.border = '3px solid white';
+        navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
         check++;
         github.style.color = 'white';
