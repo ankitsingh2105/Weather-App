@@ -1,6 +1,5 @@
 body {
-    background-color: rgb(255, 255, 255);
-    /* border: 3px solid #fab005; */
+    margin: 0px;
 }
 .loadingSection{
     margin-top: 93px;
@@ -202,6 +201,7 @@ input {
 /* local Storage part */
 
 .indexhead{
+    margin: 0px 1px;
     display: grid;
     grid-template-columns: 80px 80px 80px 80px;
     margin-top: 60px;
