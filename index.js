@@ -121,7 +121,7 @@ const DisplayInfo = async (city) => {
             "humidity": data.list[0].main.humidity
         })
         let defaultPlace = localStorage.getItem('defaultPlace');
-        if (defaultPlace === null) {
+        if (defaultPlace === null){
             localStorage.setItem('defaultPlace', JSON.stringify(array));
         }
         array = getUniqueListBy(array, "place");
