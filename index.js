@@ -39,7 +39,7 @@ function changeTime1(time) {
     var date = new Date(unix_timestamp * 1000);
     var hours = date.getHours();
     var minutes = "0" + date.getMinutes();
-    var formattedTime = hours-12 + ':' + minutes.substr(-2);
+    var formattedTime = hours - 12 + ':' + minutes.substr(-2);
     return formattedTime;
 }
 let clearLocaldata = document.querySelector('#clearButton');
@@ -121,7 +121,7 @@ const DisplayInfo = async (city) => {
             "humidity": data.list[0].main.humidity
         })
         let defaultPlace = localStorage.getItem('defaultPlace');
-        if (defaultPlace === null){
+        if (defaultPlace === null) {
             localStorage.setItem('defaultPlace', JSON.stringify(array));
         }
         array = getUniqueListBy(array, "place");
@@ -142,7 +142,7 @@ const DisplayInfo = async (city) => {
         align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
         align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
         align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
-        small.innerHTML="<strong>Overall</strong>: " + data.list[0].weather[0].description;
+        small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
         info3.innerHTML = data.list[0].main.humidity + ' %';
         info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
         info4.innerHTML = city;
@@ -240,7 +240,7 @@ if (test === 0) {
                 "place": element,
                 "temperature": Math.trunc(e.list[0].main.temp_max - 273.15),
                 "wind": e.list[0].wind.speed,
-                "humidity": e.list[0].main.humidity 
+                "humidity": e.list[0].main.humidity
             })
             localStorage.setItem("warm", JSON.stringify(warmArray), "4");
         })
