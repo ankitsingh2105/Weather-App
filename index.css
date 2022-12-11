@@ -97,7 +97,7 @@ input {
 
 .sun {
     /* margin-top: ; */
-    border: 2px solid gray;
+    border: 1px solid gray;
     margin: 10px 17px;
     padding: 10px 10px;
     width: 310px;
@@ -105,6 +105,9 @@ input {
     height: 210px;
     box-shadow: 6px 5px 10px black;
     /* background-color: #f9e1aa; */
+}
+.info{
+    text-shadow: 1px 1px 0px black;
 }
 
 .info {
