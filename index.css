@@ -136,6 +136,7 @@ h1{
     top: 0%;
     right: .4%;
     left: .3%;
+    opacity: 95%;
 }
 
 .bar :last-child {
