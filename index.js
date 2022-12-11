@@ -12,8 +12,8 @@ function time() {
     span.textContent =
         ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
 }
-
 setInterval(time, 1000);
+time();
 if (prevSearches !== null) {
     array = JSON.parse(prevSearches);
 }

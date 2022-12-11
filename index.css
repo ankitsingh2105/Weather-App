@@ -107,6 +107,9 @@ input {
     /* background-color: #f9e1aa; */
     border-radius: 15px;
 }
+h1{
+    text-shadow: 2px 0.6px 1px #fab005;
+}
 .info{
     text-shadow: 1px 1px 0px black;
 }
