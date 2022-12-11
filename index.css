@@ -105,6 +105,7 @@ input {
     height: 210px;
     box-shadow: 6px 5px 10px black;
     /* background-color: #f9e1aa; */
+    border-radius: 15px;
 }
 .info{
     text-shadow: 1px 1px 0px black;
