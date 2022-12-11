@@ -1,24 +1,16 @@
 console.log("Welcome Inspector! ✨");
 let prevSearches = localStorage.getItem('prevSearches');
 let array = [];
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': '37a4dd4f89msh0050240a1e79695p17b517jsn4bbb2afbedbb',
-        'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-    }
-};
 
-let dayArray = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
 let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var span = document.getElementById('span');
 function time() {
-  var d = new Date();
-  var s = d.getSeconds();
-  var m = d.getMinutes();
-  var h = d.getHours();
-  span.textContent = 
-    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+    var d = new Date();
+    var s = d.getSeconds();
+    var m = d.getMinutes();
+    var h = d.getHours();
+    span.textContent =
+        ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
 }
 
 setInterval(time, 1000);
@@ -34,13 +26,29 @@ function getUniqueListBy(arr, key) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+function changeTime(time) {
+    let unix_timestamp = time
+    var date = new Date(unix_timestamp * 1000);
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var formattedTime = hours + ':' + minutes.substr(-2);
+    return formattedTime;
+}
+function changeTime1(time) {
+    let unix_timestamp = time
+    var date = new Date(unix_timestamp * 1000);
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var formattedTime = hours-12 + ':' + minutes.substr(-2);
+    return formattedTime;
+}
 let clearLocaldata = document.querySelector('#clearButton');
 clearLocaldata.addEventListener('click', function () {
     let displayInfo = document.querySelector('.prevInfo1');
     let defaultCity = localStorage.getItem('defaultPlace')
     let defArray = [];
     defArray = JSON.parse(defaultCity);
-    localStorage.clear();
+    localStorage.removeItem('prevSearches');
     defArray.forEach((e) => {
         displayInfo.innerHTML = `
         <div class="indexhead2">
@@ -59,43 +67,58 @@ function display_Search() {
         let displayInfo = document.querySelector('.prevInfo1');
         newArray.forEach((e) => {
             displayInfo.innerHTML += `
-                            <div class="indexhead2">
-                            <div class="ingrid center cityplus">${e.place}</div>
-                            <div class="ingrid center tempplus">${e.temperature}°C</div>
-                            <div class="ingrid center windplus">${e.wind}km/h</div>
-                            <div class="ingrid center humplus">${e.humidity}%</div>
-                            </div>`
+            <div class="indexhead2">
+            <div class="ingrid center cityplus">${e.place}</div>
+            <div class="ingrid center tempplus">${e.temperature}°C</div>
+            <div class="ingrid center windplus">${e.wind}m/s</div>
+            <div class="ingrid center humplus">${e.humidity}%</div>
+            </div>`
         })
     }
 }
 const DisplayInfo = async (city) => {
-    let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`
-    let align = document.querySelector('.align');
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=605b5adc1b1f5d216518eb1c953c563d`
+    let align = document.getElementsByClassName('align');
     let loadingSection = document.querySelector('.loadingSection');
     let info1 = document.querySelector('.info1');
+    let info4 = document.querySelector('.info4');
+    let info5 = document.querySelector('.info5');
     let cityname = document.querySelector('.city');
     let info2 = document.querySelector('.info2');
     let info3 = document.querySelector('.info3');
     let align1 = document.querySelector('.aligns1');
     let align2 = document.querySelector('.aligns2');
+    let align3 = document.querySelector('.aligns3');
     let align4 = document.querySelector('.aligns4');
     let align5 = document.querySelector('.aligns5');
+    let align6 = document.querySelector('.aligns6');
     let align7 = document.querySelector('.aligns7');
     let align8 = document.querySelector('.aligns8');
-    align.style.display = 'none';
+    let align9 = document.querySelector('.aligns9');
+    let align10 = document.querySelector('.aligns10');
+    let align11 = document.querySelector('.aligns11');
+    let align12 = document.querySelector('.aligns12');
+    let align13 = document.querySelector('.aligns13');
+    let align14 = document.querySelector('.aligns14');
+    let align15 = document.querySelector('.aligns15');
+    let small = document.querySelector('.small');
+    align[0].style.display = 'none';
     loadingSection.style.display = 'flex';
-    let res = await fetch(url, options);
+    let res = await fetch(url);
     let data = await res.json();
-    if (data.max_temp === undefined) {
+    console.log(data);
+    console.log("->> ", data.list[0].main.temp - 273.15)
+    if (data.list[0].main.temp === undefined) {
         window.alert('OOPS! The input is not present in the Database -', city, " -")
     }
     else {
         city = capitalizeFirstLetter(city);
+        let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
         array.push({
             "place": city,
-            "temperature": data.temp,
-            "wind": data.wind_speed,
-            "humidity": data.humidity
+            "temperature": celTemp,
+            "wind": data.list[0].wind.speed,
+            "humidity": data.list[0].main.humidity
         })
         let defaultPlace = localStorage.getItem('defaultPlace');
         if (defaultPlace === null) {
@@ -104,29 +127,43 @@ const DisplayInfo = async (city) => {
         array = getUniqueListBy(array, "place");
         localStorage.setItem('prevSearches', JSON.stringify(array));
         cityname.innerHTML = city;
-        align1.innerHTML = "<strong>Max Temperature</strong>: " + data.max_temp + '°C';
-        align2.innerHTML = "<strong>Min Temperature</strong>: " + data.min_temp + '°C';
-        align4.innerHTML = "<strong>Wind Degree</strong>: " + data.wind_degrees + '°';
-        align5.innerHTML = "<strong>Wind Speed</strong>: " + data.wind_speed + ' km/h';
-        align7.innerHTML = "<strong>Feels Like</strong>: " + data.feels_like;
-        align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.cloud_pct + "%";
-        info3.innerHTML = data.humidity + '%';
-        info1.innerHTML = data.temp + '°C';
-        info2.innerHTML = data.wind_speed + ' km/h';
+        align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+        align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
+        align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
+        align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
+        align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
+        align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
+        align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
+        align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
+        align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
+        align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
+        align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
+        align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
+        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
+        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
+        align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
+        small.innerHTML="<strong>Overall</strong>: " + data.list[0].weather[0].description;
+        info3.innerHTML = data.list[0].main.humidity + ' %';
+        info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
+        info4.innerHTML = city;
+        info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+        info2.innerHTML = data.list[0].wind.speed + ' m/s';
     }
     let clear = document.querySelector('.prevInfo1');
     clear.innerHTML = '';
-    align.style.display = 'flex';
+    align[0].style.display = 'grid';
     loadingSection.style.display = 'none';
     display_Search();
 }
+// DisplayInfo();
 
 //  async ended  ✨✨✨✨✨✨
 
 
 let date = document.querySelector('.date');
 let datetime = new Date();
-date.innerHTML = dayArray[datetime.getDay() - 1] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear();
+let dayArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday"];
+date.innerHTML = dayArray[datetime.getDay()] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear();
 
 let index = 0;
 if (index == 0) {
@@ -185,11 +222,11 @@ function disply_warm() {
             <div class="indexhead2">
             <div class="ingrid center cityplus">${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
-            <div class="ingrid center windplus">${e.wind}km/h</div>
+            <div class="ingrid center windplus">${e.wind}m/s</div>
             <div class="ingrid center humplus">${e.humidity}%</div>
             </div>
             `
-        })
+    })
 }
 let test = 0;
 let famousPlaces = document.querySelector('.famousPlaces');
@@ -197,13 +234,13 @@ if (test === 0) {
     let warmArray = [];
     let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
     warmPlaces.forEach(element => {
-        let url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${element}`
-        fetch(url, options).then((e) => { return e.json() }).then((e) => {
+        let url = `https://api.openweathermap.org/data/2.5/forecast?q=${element}&appid=605b5adc1b1f5d216518eb1c953c563d`;
+        fetch(url).then((e) => { return e.json() }).then((e) => {
             warmArray.push({
                 "place": element,
-                "temperature": e.temp,
-                "wind": e.wind_speed,
-                "humidity": e.humidity
+                "temperature": Math.trunc(e.list[0].main.temp_max - 273.15),
+                "wind": e.list[0].wind.speed,
+                "humidity": e.list[0].main.humidity 
             })
             localStorage.setItem("warm", JSON.stringify(warmArray), "4");
         })
