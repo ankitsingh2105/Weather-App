@@ -126,7 +126,8 @@ h1{
 }
 
 .Child {
-    font-size: 50px;
+    font-size: 70px;
+    margin: -10px 0px;
 }
 
 .bar {

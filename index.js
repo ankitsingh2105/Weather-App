@@ -9,9 +9,9 @@ function time() {
     var s = d.getSeconds();
     var m = d.getMinutes();
     var h = d.getHours();
-    if(h)
-    span.textContent =
-        ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+    if (h)
+        span.textContent =
+            ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
 }
 setInterval(time, 1000);
 time();
@@ -107,8 +107,6 @@ const DisplayInfo = async (city) => {
     loadingSection.style.display = 'flex';
     let res = await fetch(url);
     let data = await res.json();
-    console.log(data);
-    console.log("->> ", data.list[0].main.temp - 273.15)
     if (data.list[0].main.temp === undefined) {
         window.alert('OOPS! The input is not present in the Database -', city, " -")
     }
@@ -167,9 +165,15 @@ let dayArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday"
 date.innerHTML = dayArray[datetime.getDay()] + ', ' + datetime.getDate() + ' ' + month[datetime.getMonth()] + " " + datetime.getFullYear();
 
 let index = 0;
+let userLocation = localStorage.getItem('location');
 if (index == 0) {
-    DisplayInfo('Nainital');
-    index = 1;
+    console.log("entered null")
+    navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+    }, function (error) {
+        DisplayInfo('Nainital');
+    });
 }
 let button = document.querySelector('.button');
 let input = document.querySelector('.input');
