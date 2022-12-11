@@ -98,7 +98,7 @@ input {
 .sun {
     /* margin-top: ; */
     border: 2px solid gray;
-    margin: 10px 30px;
+    margin: 10px 17px;
     padding: 10px 10px;
     width: 310px;
     /* color: black; */
@@ -200,7 +200,7 @@ input {
     grid-template-columns: 4fr 4fr 4fr;
     align-items: center;
     justify-content: space-evenly;
-    grid-gap: 59px;
+    grid-gap: 30px;
     margin-top: -20px;
 }
 
@@ -224,8 +224,10 @@ input {
 @media screen and (max-width: 1194px) {
     .align2 {
         grid-template-columns: 4fr 4fr;
+        grid-gap: 12px;
     }
 }
+
 
 @media screen and (max-width: 783px) {
     .align2 {
