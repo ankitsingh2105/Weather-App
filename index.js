@@ -73,7 +73,7 @@ async function display_Search() {
         newArray.forEach((e) => {
             displayInfo.innerHTML += `
             <div class="indexhead3">
-            <div class="ingrid center cityplus">${e.place}</div>
+            <div class="ingrid center cityplus" style="color : #fab005 ; text-shadow: .5px -.2px 0px black; ">${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
             <div class="ingrid center windplus">${e.wind}m/s</div>
             <div class="ingrid center humplus">${e.humidity}%</div>
@@ -94,7 +94,7 @@ async function disply_warm() {
     showArray.forEach((e) => {
         str+= `
             <div class="indexhead2">
-            <div class="ingrid center cityplus">${e.place}</div>
+            <div class="ingrid center cityplus" style="color : #fab005 ; text-shadow: .5px -.2px 0px black; " >${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
             <div class="ingrid center windplus">${e.wind}m/s</div>
             <div class="ingrid center humplus">${e.humidity}%</div>
@@ -210,7 +210,6 @@ date.innerHTML = dayArray[datetime.getDay()] + ', ' + datetime.getDate() + ' ' +
 let index = 0;
 if (index == 0) {
     DisplayInfo('Nainital');
-    // displayInfo1();
     index = 1;
 }
 let button = document.querySelector('.button');
@@ -219,7 +218,6 @@ button.addEventListener('click', () => {
     let cityName = document.querySelector('.input')
     let city = cityName.value;
     DisplayInfo(city);
-    // displayInfo1();
     input.value = '';
 })
 
