@@ -87,11 +87,12 @@ async function display_Search() {
 //  updated to async function ✨✨✨✨
 
 async function disply_warm() {
+    let str = ""
     let showArray = [];
     showArray = JSON.parse(sessionStorage.getItem("warm"));
     let famousPlaces = document.querySelector('.famousPlaces');
     showArray.forEach((e) => {
-        famousPlaces.innerHTML += `
+        str+= `
             <div class="indexhead2">
             <div class="ingrid center cityplus">${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
@@ -99,6 +100,7 @@ async function disply_warm() {
             <div class="ingrid center humplus">${e.humidity}%</div>
             </div>`
     })
+    famousPlaces.innerHTML=str;
 }
 
 let test = sessionStorage.getItem("warm");
