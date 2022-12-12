@@ -281,6 +281,12 @@ input {
     justify-content: space-evenly;
     margin: 20px 0px;
 }
+.indexhead3 {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    justify-content: space-evenly;
+    margin: 20px 0px;
+}
 
 .cityplus {
     font-weight: bolder;

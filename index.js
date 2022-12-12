@@ -60,7 +60,11 @@ clearLocaldata.addEventListener('click', function () {
         </div>`
     })
 })
-function display_Search() {
+let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
+
+//  warm places ended ✨✨✨✨✨✨
+
+async function display_Search() {
     let check = localStorage.getItem('prevSearches');
     if (check !== null) {
         let newArray = [];
@@ -68,7 +72,7 @@ function display_Search() {
         let displayInfo = document.querySelector('.prevInfo1');
         newArray.forEach((e) => {
             displayInfo.innerHTML += `
-            <div class="indexhead2">
+            <div class="indexhead3">
             <div class="ingrid center cityplus">${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
             <div class="ingrid center windplus">${e.wind}m/s</div>
@@ -77,6 +81,44 @@ function display_Search() {
         })
     }
 }
+
+
+//  showing warm places  ✨✨✨✨✨✨
+//  updated to async function ✨✨✨✨
+
+async function disply_warm() {
+    let showArray = [];
+    showArray = JSON.parse(sessionStorage.getItem("warm"));
+    let famousPlaces = document.querySelector('.famousPlaces');
+    showArray.forEach((e) => {
+        famousPlaces.innerHTML += `
+            <div class="indexhead2">
+            <div class="ingrid center cityplus">${e.place}</div>
+            <div class="ingrid center tempplus">${e.temperature}°C</div>
+            <div class="ingrid center windplus">${e.wind}m/s</div>
+            <div class="ingrid center humplus">${e.humidity}%</div>
+            </div>`
+    })
+}
+
+let test = sessionStorage.getItem("warm");
+if (test === null) {
+    let warmArray = [];
+    warmPlaces.forEach(element => {
+        let url = `https://api.openweathermap.org/data/2.5/forecast?q=${element}&appid=605b5adc1b1f5d216518eb1c953c563d`;
+        fetch(url).then((e) => { return e.json() }).then((e) => {
+            warmArray.push({
+                "place": element,
+                "temperature": Math.trunc(e.list[0].main.temp_max - 273.15),
+                "wind": e.list[0].wind.speed,
+                "humidity": e.list[0].main.humidity
+            })
+            sessionStorage.setItem("warm", JSON.stringify(warmArray));
+        })
+    });
+}
+
+
 const DisplayInfo = async (city) => {
     let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=605b5adc1b1f5d216518eb1c953c563d`
     let align = document.getElementsByClassName('align');
@@ -105,58 +147,54 @@ const DisplayInfo = async (city) => {
     let small = document.querySelector('.small');
     align[0].style.display = 'none';
     loadingSection.style.display = 'flex';
-    try {
-        let res = await fetch(url);
-        let data = await res.json();
-        if (data.list[0].main.temp === undefined) {
-            window.alert('OOPS! The input is not present in the Database -', city, " -")
+    let res = await fetch(url);
+    let data = await res.json();
+    if (data.list[0].main.temp === undefined) {
+        window.alert('OOPS! The input is not present in the Database -', city, " -")
+    }
+    else {
+        city = capitalizeFirstLetter(city);
+        let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
+        array.push({
+            "place": city,
+            "temperature": celTemp,
+            "wind": data.list[0].wind.speed,
+            "humidity": data.list[0].main.humidity
+        })
+        let defaultPlace = localStorage.getItem('defaultPlace');
+        if (defaultPlace === null) {
+            localStorage.setItem('defaultPlace', JSON.stringify(array));
         }
-        else {
-            city = capitalizeFirstLetter(city);
-            let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
-            array.push({
-                "place": city,
-                "temperature": celTemp,
-                "wind": data.list[0].wind.speed,
-                "humidity": data.list[0].main.humidity
-            })
-            let defaultPlace = localStorage.getItem('defaultPlace');
-            if (defaultPlace === null) {
-                localStorage.setItem('defaultPlace', JSON.stringify(array));
-            }
-            array = getUniqueListBy(array, "place");
-            localStorage.setItem('prevSearches', JSON.stringify(array));
-            cityname.innerHTML = city;
-            align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-            align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
-            align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
-            align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
-            align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
-            align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
-            align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
-            align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
-            align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
-            align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
-            align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
-            align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
-            align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
-            align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
-            align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
-            small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
-            info3.innerHTML = data.list[0].main.humidity + ' %';
-            info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
-            info4.innerHTML = city;
-            info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-            info2.innerHTML = data.list[0].wind.speed + ' m/s';
-        }
+        array = getUniqueListBy(array, "place");
+        localStorage.setItem('prevSearches', JSON.stringify(array));
+        cityname.innerHTML = city;
+        align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+        align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
+        align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
+        align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
+        align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
+        align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
+        align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
+        align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
+        align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
+        align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
+        align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
+        align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
+        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
+        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
+        align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
+        small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
+        info3.innerHTML = data.list[0].main.humidity + ' %';
+        info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
+        info4.innerHTML = city;
+        info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+        info2.innerHTML = data.list[0].wind.speed + ' m/s';
         let clear = document.querySelector('.prevInfo1');
         clear.innerHTML = '';
         align[0].style.display = 'grid';
         loadingSection.style.display = 'none';
         display_Search();
-    }
-    catch {
-        console.log("BAWAAA")
+        disply_warm();
     }
 }
 
@@ -170,6 +208,7 @@ date.innerHTML = dayArray[datetime.getDay()] + ', ' + datetime.getDate() + ' ' +
 let index = 0;
 if (index == 0) {
     DisplayInfo('Nainital');
+    // displayInfo1();
     index = 1;
 }
 let button = document.querySelector('.button');
@@ -178,6 +217,7 @@ button.addEventListener('click', () => {
     let cityName = document.querySelector('.input')
     let city = cityName.value;
     DisplayInfo(city);
+    // displayInfo1();
     input.value = '';
 })
 
@@ -212,49 +252,3 @@ moon.addEventListener('click', function (e) {
 })
 
 
-//  showing warm places  ✨✨✨✨✨✨
-//  updated to async function ✨✨✨✨
-
-async function disply_warm() {
-    let showArray = [];
-    showArray = JSON.parse(sessionStorage.getItem("warm"));
-    showArray.forEach((e) => {
-        famousPlaces.innerHTML += `
-            <div class="indexhead2">
-            <div class="ingrid center cityplus">${e.place}</div>
-            <div class="ingrid center tempplus">${e.temperature}°C</div>
-            <div class="ingrid center windplus">${e.wind}m/s</div>
-            <div class="ingrid center humplus">${e.humidity}%</div>
-            </div>`
-    })
-}
-async function localmem() {
-    let warmArray = [];
-    let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
-    warmPlaces.forEach(element => {
-        let url = `https://api.openweathermap.org/data/2.5/forecast?q=${element}&appid=605b5adc1b1f5d216518eb1c953c563d`;
-        fetch(url).then((e) => { return e.json() }).then((e) => {
-            warmArray.push({
-                "place": element,
-                "temperature": Math.trunc(e.list[0].main.temp_max - 273.15),
-                "wind": e.list[0].wind.speed,
-                "humidity": e.list[0].main.humidity
-            })
-            sessionStorage.setItem("warm", JSON.stringify(warmArray));
-        })
-    });
-}
-let test = localStorage.getItem("warm");
-let famousPlaces = document.querySelector('.famousPlaces');
-if (test === null) {
-    async function checking() {
-        await localmem();
-        await disply_warm();
-    }
-    checking();
-}
-else {
-    disply_warm();
-}
-
-//  warm places ended ✨✨✨✨✨✨
