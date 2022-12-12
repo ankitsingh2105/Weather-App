@@ -9,9 +9,9 @@ function time() {
     var s = d.getSeconds();
     var m = d.getMinutes();
     var h = d.getHours();
-    if(h)
-    span.textContent =
-        ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+    if (h)
+        span.textContent =
+            ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
 }
 setInterval(time, 1000);
 time();
@@ -105,61 +105,62 @@ const DisplayInfo = async (city) => {
     let small = document.querySelector('.small');
     align[0].style.display = 'none';
     loadingSection.style.display = 'flex';
-    let res = await fetch(url);
-    let data = await res.json();
-    console.log(data);
-    console.log("->> ", data.list[0].main.temp - 273.15)
-    if (data.list[0].main.temp === undefined) {
-        window.alert('OOPS! The input is not present in the Database -', city, " -")
-    }
-    else {
-        city = capitalizeFirstLetter(city);
-        let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
-        array.push({
-            "place": city,
-            "temperature": celTemp,
-            "wind": data.list[0].wind.speed,
-            "humidity": data.list[0].main.humidity
-        })
-        let defaultPlace = localStorage.getItem('defaultPlace');
-        if (defaultPlace === null) {
-            localStorage.setItem('defaultPlace', JSON.stringify(array));
+    try {
+        let res = await fetch(url);
+        let data = await res.json();
+        if (data.list[0].main.temp === undefined) {
+            window.alert('OOPS! The input is not present in the Database -', city, " -")
         }
-        array = getUniqueListBy(array, "place");
-        localStorage.setItem('prevSearches', JSON.stringify(array));
-        cityname.innerHTML = city;
-        align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-        align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
-        align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
-        align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
-        align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
-        align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
-        align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
-        align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
-        align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
-        align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
-        align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
-        align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
-        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
-        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
-        align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
-        small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
-        info3.innerHTML = data.list[0].main.humidity + ' %';
-        info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
-        info4.innerHTML = city;
-        info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-        info2.innerHTML = data.list[0].wind.speed + ' m/s';
+        else {
+            city = capitalizeFirstLetter(city);
+            let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
+            array.push({
+                "place": city,
+                "temperature": celTemp,
+                "wind": data.list[0].wind.speed,
+                "humidity": data.list[0].main.humidity
+            })
+            let defaultPlace = localStorage.getItem('defaultPlace');
+            if (defaultPlace === null) {
+                localStorage.setItem('defaultPlace', JSON.stringify(array));
+            }
+            array = getUniqueListBy(array, "place");
+            localStorage.setItem('prevSearches', JSON.stringify(array));
+            cityname.innerHTML = city;
+            align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+            align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
+            align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
+            align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
+            align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
+            align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
+            align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
+            align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
+            align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
+            align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
+            align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
+            align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
+            align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
+            align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
+            align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
+            small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
+            info3.innerHTML = data.list[0].main.humidity + ' %';
+            info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
+            info4.innerHTML = city;
+            info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+            info2.innerHTML = data.list[0].wind.speed + ' m/s';
+        }
+        let clear = document.querySelector('.prevInfo1');
+        clear.innerHTML = '';
+        align[0].style.display = 'grid';
+        loadingSection.style.display = 'none';
+        display_Search();
     }
-    let clear = document.querySelector('.prevInfo1');
-    clear.innerHTML = '';
-    align[0].style.display = 'grid';
-    loadingSection.style.display = 'none';
-    display_Search();
+    catch {
+        console.log("BAWAAA")
+    }
 }
-// DisplayInfo();
 
-//  async ended  ✨✨✨✨✨✨
-
+//  async(1) ended  ✨✨✨✨✨✨
 
 let date = document.querySelector('.date');
 let datetime = new Date();
@@ -211,13 +212,12 @@ moon.addEventListener('click', function (e) {
 })
 
 
-
-
 //  showing warm places  ✨✨✨✨✨✨
+//  updated to async function ✨✨✨✨
 
-function disply_warm() {
+async function disply_warm() {
     let showArray = [];
-    showArray = JSON.parse(localStorage.getItem("warm"));
+    showArray = JSON.parse(sessionStorage.getItem("warm"));
     showArray.forEach((e) => {
         famousPlaces.innerHTML += `
             <div class="indexhead2">
@@ -225,13 +225,10 @@ function disply_warm() {
             <div class="ingrid center tempplus">${e.temperature}°C</div>
             <div class="ingrid center windplus">${e.wind}m/s</div>
             <div class="ingrid center humplus">${e.humidity}%</div>
-            </div>
-            `
+            </div>`
     })
 }
-let test = 0;
-let famousPlaces = document.querySelector('.famousPlaces');
-if (test === 0) {
+async function localmem() {
     let warmArray = [];
     let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
     warmPlaces.forEach(element => {
@@ -243,14 +240,21 @@ if (test === 0) {
                 "wind": e.list[0].wind.speed,
                 "humidity": e.list[0].main.humidity
             })
-            localStorage.setItem("warm", JSON.stringify(warmArray), "4");
+            sessionStorage.setItem("warm", JSON.stringify(warmArray));
         })
     });
-    disply_warm();
-    test = 1;
+}
+let test = localStorage.getItem("warm");
+let famousPlaces = document.querySelector('.famousPlaces');
+if (test === null) {
+    async function checking() {
+        await localmem();
+        await disply_warm();
+    }
+    checking();
 }
 else {
     disply_warm();
 }
 
-    //  warm places ended ✨✨✨✨✨✨
+//  warm places ended ✨✨✨✨✨✨
