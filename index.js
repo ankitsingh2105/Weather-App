@@ -35,14 +35,6 @@ function changeTime(time) {
     var formattedTime = hours + ':' + minutes.substr(-2);
     return formattedTime;
 }
-function changeTime1(time) {
-    let unix_timestamp = time
-    var date = new Date(unix_timestamp * 1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var formattedTime = hours - 12 + ':' + minutes.substr(-2);
-    return formattedTime;
-}
 let clearLocaldata = document.querySelector('#clearButton');
 clearLocaldata.addEventListener('click', function () {
     let displayInfo = document.querySelector('.prevInfo1');
@@ -151,10 +143,11 @@ const DisplayInfo = async (city) => {
     loadingSection.style.display = 'flex';
     let res = await fetch(url);
     let data = await res.json();
-    if (data.list[0].main.temp === undefined) {
-        window.alert('OOPS! The input is not present in the Database -', city, " -")
-    }
-    else {
+    // if (!data.ok) {
+    //     window.alert('OOPS! The input is not present in the Database -', city, " -");
+    //     console.log(data.ok);
+    // }
+    // else {
         city = capitalizeFirstLetter(city);
         let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
         array.push({
@@ -182,8 +175,8 @@ const DisplayInfo = async (city) => {
         align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
         align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
         align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
-        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise) + " AM";
-        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime1(data.city.sunset) + " PM";
+        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise);
+        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime(data.city.sunset) ;
         align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
         small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
         info3.innerHTML = data.list[0].main.humidity + ' %';
@@ -197,7 +190,7 @@ const DisplayInfo = async (city) => {
         loadingSection.style.display = 'none';
         display_Search();
         disply_warm();
-    }
+    // }
 }
 
 //  async(1) ended  ✨✨✨✨✨✨

@@ -199,6 +199,7 @@ button {
     font-size: 15px;
     padding: 2px 7px;
     color: #183153;
+    transition: 0.2s all;
 }
 
 input {
