@@ -225,12 +225,18 @@ let moon = document.querySelector('.moon');
 let navbar = document.querySelector('.bar');
 let indexhead = document.getElementsByClassName('indexhead');
 let github = document.querySelector('.fa-github');
+let sun  = document.getElementsByClassName('sun');
 let check = 1;
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
+        sun[0].style.background = 'black';
+        sun[1].style.background = 'black';
+        sun[2].style.background = 'black';
+        sun[3].style.background = 'black';
+        sun[4].style.background = 'black';
         navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
-        moon.style.background = 'rgb(159, 218, 240)'
+        moon.style.background = '#2cf4ee'
         check++;
         github.style.color = 'white';
         indexhead[0].style.border = '3px solid white';
@@ -239,6 +245,11 @@ moon.addEventListener('click', function (e) {
         document.body.style.background = 'black';
     }
     else {
+        sun[0].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[1].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[2].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[3].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[4].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
         navbar.style.border = '3px solid black';
         github.style.color = 'black';
         moon.style.background = 'black'

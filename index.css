@@ -71,7 +71,6 @@ img {
     background-color: white;
     color: black;
     border-radius: 23px;
-    text-decoration: underline;
 }
 h1 {
     font-size: 44px;
@@ -103,10 +102,17 @@ input {
     padding: 10px 10px;
     width: 310px;
     /* color: black; */
-    height: 210px;
+    height: 230px;
     box-shadow: 6px 5px 10px black;
     /* background-color: #f9e1aa; */
     border-radius: 15px;
+    background: url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0;
+    transition: transform 0.2s;
+    box-sizing: border-box;
+    background-size: 100% auto;
+}
+.sun:hover{
+    transform: scale(1.02);
 }
 h1{
     text-shadow: 2px 0.6px 1px #fab005;
@@ -126,6 +132,7 @@ h1{
 }
 
 .bar {
+    z-index: 3423;
     background-color: #fab005;
     color: black;
     border: 3px solid black;
