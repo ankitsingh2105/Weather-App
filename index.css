@@ -100,7 +100,7 @@ input {
     border: 1px solid gray;
     margin: 10px 17px;
     padding: 10px 10px;
-    width: 310px;
+    width: 330px;
     /* color: black; */
     height: 230px;
     box-shadow: 6px 5px 10px black;
@@ -161,7 +161,8 @@ h1{
 .aligns7,
 .aligns9,
 .aligns11,
-.aligns14 {
+.aligns14, 
+.aligns17 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -170,7 +171,8 @@ h1{
 .info2,
 .info3,
 .info4,
-.info5 {
+.info5,
+.info6 {
     color: #fab005;
 }
 
@@ -247,7 +249,7 @@ input {
 }
 
 
-@media screen and (max-width: 783px) {
+@media screen and (max-width: 730px) {
     .align2 {
         grid-template-columns: 4fr;
     }

@@ -112,7 +112,6 @@ if (test === null) {
     });
 }
 
-
 const DisplayInfo = async (city) => {
     let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=605b5adc1b1f5d216518eb1c953c563d`
     let align = document.getElementsByClassName('align');
@@ -120,6 +119,7 @@ const DisplayInfo = async (city) => {
     let info1 = document.querySelector('.info1');
     let info4 = document.querySelector('.info4');
     let info5 = document.querySelector('.info5');
+    let info6 = document.querySelector('.info6');
     let cityname = document.querySelector('.city');
     let info2 = document.querySelector('.info2');
     let info3 = document.querySelector('.info3');
@@ -138,11 +138,15 @@ const DisplayInfo = async (city) => {
     let align13 = document.querySelector('.aligns13');
     let align14 = document.querySelector('.aligns14');
     let align15 = document.querySelector('.aligns15');
+    let align16 = document.querySelector('.aligns16');
+    let align17 = document.querySelector('.aligns17');
+    let align18 = document.querySelector('.aligns18');
     let small = document.querySelector('.small');
     align[0].style.display = 'none';
     loadingSection.style.display = 'flex';
     let res = await fetch(url);
     let data = await res.json();
+    console.log(data);
     // if (!data.ok) {
     //     window.alert('OOPS! The input is not present in the Database -', city, " -");
     //     console.log(data.ok);
@@ -178,10 +182,14 @@ const DisplayInfo = async (city) => {
         align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise);
         align14.innerHTML = "<strong>Sunset</strong>: " + changeTime(data.city.sunset) ;
         align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
+        align17.innerHTML = "<strong>Status</strong>: " + data.list[0].weather[0].description;
+        align16.innerHTML = "<strong>Time of forcast</strong>: " + data.list[0].dt_txt;
+        align18.innerHTML = "<strong>Visibility</strong>: " + data.list[0].visibility;
         small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
         info3.innerHTML = data.list[0].main.humidity + ' %';
-        info5.innerHTML = changeTime(data.city.sunrise) + ' AM';
+        info5.innerHTML = changeTime(data.city.sunrise);
         info4.innerHTML = city;
+        info6.innerHTML = data.list[0].dt_txt.substr(11,5);
         info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
         info2.innerHTML = data.list[0].wind.speed + ' m/s';
         let clear = document.querySelector('.prevInfo1');
