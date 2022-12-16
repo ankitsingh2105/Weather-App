@@ -173,7 +173,7 @@ const DisplayInfo = async (city) => {
         align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
         align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
         align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
-        align7.innerHTML = "<strong>Feels Like</strong>: " + Math.trunc(data.list[0].main.feels_like - 273.15) + '°C';
+        align7.innerHTML = "<strong>Humidity</strong>: " + data.list[0].main.humidity + ' %';
         align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
         align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
         align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
@@ -235,6 +235,7 @@ moon.addEventListener('click', function (e) {
         sun[2].style.background = 'black';
         sun[3].style.background = 'black';
         sun[4].style.background = 'black';
+        sun[5].style.background = 'black';
         navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
         moon.style.background = '#2cf4ee'
@@ -251,6 +252,7 @@ moon.addEventListener('click', function (e) {
         sun[2].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
         sun[3].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
         sun[4].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[5].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
         navbar.style.border = '3px solid black';
         github.style.color = 'black';
         moon.style.background = 'black'
