@@ -224,12 +224,18 @@ let check = 1;
 let moon = document.querySelector('.moon');
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
-        sun[0].style.background = 'url("/night.png") repeat 0 0';
-        sun[1].style.background = 'url("/night.png") repeat 0 0';
-        sun[2].style.background = 'url("/night.png") repeat 0 0';
-        sun[3].style.background = 'url("/night.png") repeat 0 0';
-        sun[4].style.background = 'url("/night.png") repeat 0 0';
-        sun[5].style.background = 'url("/night.png") repeat 0 0';
+        sun[0].style.background = 'black';
+        sun[1].style.background = 'black';
+        sun[2].style.background = 'black';
+        sun[3].style.background = 'black';
+        sun[4].style.background = 'black';
+        sun[5].style.background = 'black';
+        sun[0].style.boxShadow = '1px .7px 5px white';
+        sun[1].style.boxShadow = '1px .7px 5px white';
+        sun[2].style.boxShadow = '1px .7px 5px white';
+        sun[3].style.boxShadow = '1px .7px 5px white';
+        sun[4].style.boxShadow = '1px .7px 5px white';
+        sun[5].style.boxShadow = '1px .7px 5px white';
         navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
         moon.style.background = '#2cf4ee'
@@ -238,16 +244,17 @@ moon.addEventListener('click', function (e) {
         indexhead[0].style.border = '3px solid white';
         indexhead[1].style.border = '3px solid white';
         document.body.style.color = 'white';
-        document.body.style.background = '#004953';
+        document.body.style.background = 'black';
+        // document.body.style.background = '#004953';
         // radial-gradient(red, blue)
     }
     else {
-        sun[0].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
-        sun[1].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
-        sun[2].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
-        sun[3].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
-        sun[4].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
-        sun[5].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0';
+        sun[0].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[1].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[2].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[3].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[4].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+        sun[5].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
         navbar.style.border = '3px solid black';
         github.style.color = 'black';
         moon.style.background = 'black'

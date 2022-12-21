@@ -108,7 +108,7 @@ input {
     transition: transform 0.2s;
     box-sizing: border-box;
     background-size: 100% auto;
-    background: url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0;
+    background: url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0;
 }
 .sun:hover{
     transform: scale(1.02);
