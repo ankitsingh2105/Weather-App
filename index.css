@@ -1,5 +1,6 @@
 body {
     margin: 0px;
+/* Midnight green / #004953 */
 }
 
 img {
@@ -96,20 +97,18 @@ input {
 }
 
 .sun {
-    /* margin-top: ; */
-    border: 1px solid gray;
     margin: 10px 17px;
     padding: 10px 10px;
     width: 330px;
     /* color: black; */
     height: 230px;
-    box-shadow: 6px 5px 10px black;
+    box-shadow: 4px 6px 10px black;
     /* background-color: #f9e1aa; */
     border-radius: 15px;
-    background: url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0;
     transition: transform 0.2s;
     box-sizing: border-box;
     background-size: 100% auto;
+    background: url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) repeat 0 0;
 }
 .sun:hover{
     transform: scale(1.02);
@@ -209,6 +208,7 @@ input {
     border: 1px solid black;
     box-shadow: 2px 3px 2px #183153;
     border-radius: 3px;
+    padding: 5px 12px;
 }
 
 .head2 {
