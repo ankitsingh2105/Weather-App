@@ -273,4 +273,23 @@ moon.addEventListener('click', function (e) {
     }
 })
 
+let state = true;
+let dev = document.querySelector('.dev');
+let code = document.querySelector('.code');
+let no_dev = document.querySelector('.no_dev');
+dev.addEventListener("click", function () {
+	if (state) {
+		code.style.display = "block";
+		no_dev.style.display = "none";
+		dev.innerHTML="Normal";
+		state=false;
+	}
+	else {
+		code.style.display = "none";
+		dev.innerHTML="Dev. Mode";
+		no_dev.style.display = "block";
+		state=true;
+	}
+})
+
 
