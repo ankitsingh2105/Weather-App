@@ -292,6 +292,7 @@ input {
     grid-template-columns: 80px 80px 80px 80px;
     justify-content: space-evenly;
     margin: 20px 0px;
+    padding: 3px;
 }
 .indexhead3 {
     display: grid;
