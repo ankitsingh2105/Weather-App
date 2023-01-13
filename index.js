@@ -54,7 +54,7 @@ clearLocaldata.addEventListener('click', function () {
 })
 let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
 
-//  warm places ended ✨✨✨✨✨✨
+//  todo: warm places ended ✨✨✨✨✨✨
 
 async function display_Search() {
     let check = localStorage.getItem('prevSearches');
@@ -75,8 +75,8 @@ async function display_Search() {
 }
 
 
-//  showing warm places  ✨✨✨✨✨✨
-//  updated to async function ✨✨✨✨
+//  todo: showing warm places  ✨✨✨✨✨✨
+//  todo: updated to async function ✨✨✨✨
 
 async function disply_warm() {
     let str = ""
@@ -84,7 +84,7 @@ async function disply_warm() {
     showArray = JSON.parse(sessionStorage.getItem("warm"));
     let famousPlaces = document.querySelector('.famousPlaces');
     showArray.forEach((e) => {
-        str+= `
+        str += `
             <div class="indexhead2">
             <div class="ingrid center cityplus" style="color : #fab005 ; text-shadow: .5px -.2px 0px black; " >${e.place}</div>
             <div class="ingrid center tempplus">${e.temperature}°C</div>
@@ -92,7 +92,7 @@ async function disply_warm() {
             <div class="ingrid center humplus">${e.humidity}%</div>
             </div>`
     })
-    famousPlaces.innerHTML=str;
+    famousPlaces.innerHTML = str;
 }
 
 let test = sessionStorage.getItem("warm");
@@ -147,55 +147,55 @@ const DisplayInfo = async (city) => {
     let res = await fetch(url);
     let data = await res.json();
     console.log(data);
-        city = capitalizeFirstLetter(city);
-        let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
-        array.push({
-            "place": city,
-            "temperature": celTemp,
-            "wind": data.list[0].wind.speed,
-            "humidity": data.list[0].main.humidity
-        })
-        let defaultPlace = localStorage.getItem('defaultPlace');
-        if (defaultPlace === null) {
-            localStorage.setItem('defaultPlace', JSON.stringify(array));
-        }
-        array = getUniqueListBy(array, "place");
-        localStorage.setItem('prevSearches', JSON.stringify(array));
-        cityname.innerHTML = city;
-        align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-        align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
-        align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
-        align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
-        align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
-        align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
-        align7.innerHTML = "<strong>Humidity</strong>: " + data.list[0].main.humidity + ' %';
-        align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
-        align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
-        align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
-        align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
-        align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
-        align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise);
-        align14.innerHTML = "<strong>Sunset</strong>: " + changeTime(data.city.sunset) ;
-        align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
-        align17.innerHTML = "<strong>Status</strong>: " + data.list[0].weather[0].description;
-        align16.innerHTML = "<strong>Time of forcast</strong>: " + data.list[0].dt_txt;
-        align18.innerHTML = "<strong>Visibility</strong>: " + data.list[0].visibility;
-        small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
-        info3.innerHTML = data.list[0].main.humidity + ' %';
-        info5.innerHTML = changeTime(data.city.sunrise);
-        info4.innerHTML = city;
-        info6.innerHTML = data.list[0].dt_txt.substr(11,5);
-        info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
-        info2.innerHTML = data.list[0].wind.speed + ' m/s';
-        let clear = document.querySelector('.prevInfo1');
-        clear.innerHTML = '';
-        align[0].style.display = 'grid';
-        loadingSection.style.display = 'none';
-        display_Search();
-        disply_warm();
+    city = capitalizeFirstLetter(city);
+    let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
+    array.push({
+        "place": city,
+        "temperature": celTemp,
+        "wind": data.list[0].wind.speed,
+        "humidity": data.list[0].main.humidity
+    })
+    let defaultPlace = localStorage.getItem('defaultPlace');
+    if (defaultPlace === null) {
+        localStorage.setItem('defaultPlace', JSON.stringify(array));
+    }
+    array = getUniqueListBy(array, "place");
+    localStorage.setItem('prevSearches', JSON.stringify(array));
+    cityname.innerHTML = city;
+    align1.innerHTML = "<strong>Max Temperature</strong>: " + Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+    align2.innerHTML = "<strong>Min Temperature</strong>: " + Math.trunc(data.list[0].main.temp_min - 273.15) + '°C';
+    align3.innerHTML = "<strong>Pressure</strong>: " + Math.trunc(data.list[0].main.pressure - 273.15) + ' hPc';
+    align4.innerHTML = "<strong>Wind Degree</strong>: " + data.list[0].wind.deg + '°';
+    align5.innerHTML = "<strong>Wind Speed</strong>: " + data.list[0].wind.speed + ' m/s';
+    align6.innerHTML = "<strong>Gust speed</strong>: " + data.list[0].wind.gust + ' m/s';
+    align7.innerHTML = "<strong>Humidity</strong>: " + data.list[0].main.humidity + ' %';
+    align8.innerHTML = "<strong>Precipitation Chances</strong>: " + data.list[0].pop + "%";
+    align9.innerHTML = "<strong>Cloudness</strong>: " + data.list[0].clouds.all;
+    align10.innerHTML = "<strong>Population</strong>: " + data.city.population;
+    align11.innerHTML = "<strong>Latitude</strong>: " + data.city.coord.lat + '°';
+    align12.innerHTML = "<strong>Longitude</strong>: " + data.city.coord.lon + '°';
+    align13.innerHTML = "<strong>Sunrise</strong>: " + changeTime(data.city.sunrise);
+    align14.innerHTML = "<strong>Sunset</strong>: " + changeTime(data.city.sunset);
+    align15.innerHTML = "<strong>Time Zone</strong>: " + data.city.timezone;
+    align17.innerHTML = "<strong>Status</strong>: " + data.list[0].weather[0].description;
+    align16.innerHTML = "<strong>Time of forcast</strong>: " + data.list[0].dt_txt;
+    align18.innerHTML = "<strong>Visibility</strong>: " + data.list[0].visibility;
+    small.innerHTML = "<strong>Overall</strong>: " + data.list[0].weather[0].description;
+    info3.innerHTML = data.list[0].main.humidity + ' %';
+    info5.innerHTML = changeTime(data.city.sunrise);
+    info4.innerHTML = city;
+    info6.innerHTML = data.list[0].dt_txt.substr(11, 5);
+    info1.innerHTML = Math.trunc(data.list[0].main.temp_max - 273.15) + '°C';
+    info2.innerHTML = data.list[0].wind.speed + ' m/s';
+    let clear = document.querySelector('.prevInfo1');
+    clear.innerHTML = '';
+    align[0].style.display = 'grid';
+    loadingSection.style.display = 'none';
+    display_Search();
+    disply_warm();
 }
 
-//  async(1) ended  ✨✨✨✨✨✨
+//  todo : async(1) ended
 
 let date = document.querySelector('.date');
 let datetime = new Date();
@@ -219,23 +219,15 @@ button.addEventListener('click', () => {
 let navbar = document.querySelector('.bar');
 let indexhead = document.getElementsByClassName('indexhead');
 let github = document.querySelector('.fa-github');
-let sun  = document.getElementsByClassName('sun');
+let sun = document.querySelectorAll('.sun');
 let check = 1;
 let moon = document.querySelector('.moon');
 moon.addEventListener('click', function (e) {
     if (check % 2 != 0) {
-        sun[0].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[1].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[2].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[3].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[4].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[5].style.background = 'url("./night.png") no-repeat 0 0';
-        sun[0].style.boxShadow = '2px 2px 4px white';
-        sun[1].style.boxShadow = '2px 2px 4px white';
-        sun[2].style.boxShadow = '2px 2px 4px white';
-        sun[3].style.boxShadow = '2px 2px 4px white';
-        sun[4].style.boxShadow = '2px 2px 4px white';
-        sun[5].style.boxShadow = '2px 2px 4px white';
+        sun.forEach((e) => {
+            e.style.background = 'url("./night.png") no-repeat 0 0';
+            e.style.boxShadow = '2px 2px 4px white';
+        })
         navbar.style.border = '3px solid #fae105';
         moon.innerHTML = '☀️';
         moon.style.background = '#2cf4ee'
@@ -245,22 +237,12 @@ moon.addEventListener('click', function (e) {
         indexhead[1].style.border = '3px solid white';
         document.body.style.color = 'white';
         document.body.style.background = 'black';
-        // document.body.style.background = '#004953';
-        // radial-gradient(red, blue)
     }
     else {
-        sun[0].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[1].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[2].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[3].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[4].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[5].style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
-        sun[0].style.boxShadow = '4px 6px 10px black';
-        sun[1].style.boxShadow = '4px 6px 10px black';
-        sun[2].style.boxShadow = '4px 6px 10px black';
-        sun[3].style.boxShadow = '4px 6px 10px black';
-        sun[4].style.boxShadow = '4px 6px 10px black';
-        sun[5].style.boxShadow = '4px 6px 10px black';
+        sun.forEach((e) => {
+            e.style.background = 'url(https://cdn.sstatic.net/Winterbash/img/bg-hat.png) no-repeat 0 0';
+            e.style.boxShadow = '4px 6px 10px black';
+        })
         navbar.style.border = '3px solid black';
         github.style.color = 'black';
         moon.style.background = 'black'
@@ -278,18 +260,18 @@ let dev = document.querySelector('.dev');
 let code = document.querySelector('.code');
 let no_dev = document.querySelector('.no_dev');
 dev.addEventListener("click", function () {
-	if (state) {
-		code.style.display = "block";
-		no_dev.style.display = "none";
-		dev.innerHTML="Normal";
-		state=false;
-	}
-	else {
-		code.style.display = "none";
-		dev.innerHTML="Dev. Mode";
-		no_dev.style.display = "block";
-		state=true;
-	}
+    if (state) {
+        code.style.display = "block";
+        no_dev.style.display = "none";
+        dev.innerHTML = "Normal";
+        state = false;
+    }
+    else {
+        code.style.display = "none";
+        dev.innerHTML = "Dev. Mode";
+        no_dev.style.display = "block";
+        state = true;
+    }
 })
 
 
