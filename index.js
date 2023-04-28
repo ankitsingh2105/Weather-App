@@ -53,6 +53,10 @@ clearLocaldata.addEventListener('click', function () {
     })
 })
 let warmPlaces = ["Goa", "Chennai", "Gujrat", "Pondicherry", "Mumbai", "Jaisalmer", "Kochi", "Hyderabad", "Pune"];
+const hillStations = ["Manali", "Darjeeling", "Shimla", "Ooty", "Mussoorie", "Munnar", "Nainital", "Srinagar", "Ladakh", "Coorg"];
+hillStations.push("Kodaikanal", "Gangtok", "Lansdowne", "Auli", "Kasauli", "Tawang", "Chail", "Dalhousie");
+
+
 
 //  todo: warm places ended ✨✨✨✨✨✨
 
@@ -98,7 +102,7 @@ async function disply_warm() {
 let test = sessionStorage.getItem("warm");
 if (test === null) {
     let warmArray = [];
-    warmPlaces.forEach(element => {
+    hillStations.forEach(element => {
         let url = `https://api.openweathermap.org/data/2.5/forecast?q=${element}&appid=605b5adc1b1f5d216518eb1c953c563d`;
         fetch(url).then((e) => { return e.json() }).then((e) => {
             warmArray.push({
@@ -146,7 +150,6 @@ const DisplayInfo = async (city) => {
     loadingSection.style.display = 'flex';
     let res = await fetch(url);
     let data = await res.json();
-    console.log(data);
     city = capitalizeFirstLetter(city);
     let celTemp = Math.trunc(data.list[0].main.temp - 273.15)
     array.push({
@@ -232,7 +235,7 @@ moon.addEventListener('click', function (e) {
         moon.innerHTML = '☀️';
         moon.style.background = '#2cf4ee'
         check++;
-        github.style.color = 'white';
+        // github.style.color = 'white';
         indexhead[0].style.border = '3px solid white';
         indexhead[1].style.border = '3px solid white';
         document.body.style.color = 'white';
@@ -244,7 +247,7 @@ moon.addEventListener('click', function (e) {
             e.style.boxShadow = '4px 6px 10px black';
         })
         navbar.style.border = '3px solid black';
-        github.style.color = 'black';
+        // github.style.color = 'black';
         moon.style.background = 'black'
         moon.innerHTML = '🌑';
         check++;
@@ -255,23 +258,24 @@ moon.addEventListener('click', function (e) {
     }
 })
 
-let state = true;
-let dev = document.querySelector('.dev');
-let code = document.querySelector('.code');
-let no_dev = document.querySelector('.no_dev');
-dev.addEventListener("click", function () {
-    if (state) {
-        code.style.display = "block";
-        no_dev.style.display = "none";
-        dev.innerHTML = "Normal";
-        state = false;
-    }
-    else {
-        code.style.display = "none";
-        dev.innerHTML = "Dev. Mode";
-        no_dev.style.display = "block";
-        state = true;
-    }
-})
+// let state = true;
+// let dev = document.querySelector('.dev');
+// let code = document.querySelector('.code');
+// let no_dev = document.querySelector('.no_dev');
+// dev.addEventListener("click", function () {
+//     if (state) {
+//         code.style.display = "block";
+//         no_dev.style.display = "none";
+//         dev.innerHTML = "Normal";
+//         state = false;
+//     }
+//     else {
+//         code.style.display = "none";
+//         dev.innerHTML = "Dev. Mode";
+//         no_dev.style.display = "block";
+//         state = true;
+//     }
+// })
+
 
 

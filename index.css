@@ -304,3 +304,30 @@ input {
 .cityplus {
     font-weight: bolder;
 }
+
+/* about.html */
+.about_DIV{
+    margin: 2rem 5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+.about_HEAD{
+    margin-top: 5rem;
+    text-align: justify;
+}
+li{
+    margin-top: 10px;
+}
+h2{
+    text-shadow: 1px 1px 2px #fab005;
+}
+h1 , h2{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 581px) {
+    .about_DIV{
+        margin: 2rem 1rem;
+    }
+}
