@@ -256,8 +256,10 @@ moon.addEventListener('click', function (e) {
         document.body.style.background = 'white';
     }
 })
-alert("Tap on the mic and say the name of the place it will automatically type in the search bar ✔")
-// Check browser support for SpeechRecognition API
+let Instructions = document.querySelector(".instruction_box")
+setTimeout(() => {
+    Instructions.style.display = "none";
+}, 5000);
 const voiceCommandButton = document.getElementById('voice-command-button');
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log("speech synthesis is working ")

@@ -335,6 +335,16 @@ h1 , h2{
     border-radius: 100px;
     z-index: 9999999999;
 }
+.instruction_box{
+    position: fixed;
+    bottom :13%;
+    right: 4%;
+    font-size: 12px;
+    z-index: 9999999999;
+    background-color: #fab005;
+    font-weight: bolder;
+    padding: 10px;
+}
 
 @media screen and (max-width: 581px) {
     .about_DIV{
