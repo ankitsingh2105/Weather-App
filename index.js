@@ -256,7 +256,7 @@ moon.addEventListener('click', function (e) {
         document.body.style.background = 'white';
     }
 })
-
+alert("Tap on the mic and say the name of the place it will automatically type in the search bar ✔")
 // Check browser support for SpeechRecognition API
 const voiceCommandButton = document.getElementById('voice-command-button');
 let op = document.querySelector(".shitt");
