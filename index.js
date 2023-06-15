@@ -259,18 +259,12 @@ moon.addEventListener('click', function (e) {
 alert("Tap on the mic and say the name of the place it will automatically type in the search bar ✔")
 // Check browser support for SpeechRecognition API
 const voiceCommandButton = document.getElementById('voice-command-button');
-let op = document.querySelector(".shitt");
-voiceCommandButton.addEventListener('click', ()=>{
-    op.innerHTML = "clicked"
-});
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log("speech synthesis is working ")
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'en-IN';
-    op.innerHTML = "shitt secondone";
     recognition.onstart = () => {
         console.log('Voice command recognition started.');
-        op.innerHTML = "shitt but op";
     };
 
     recognition.onresult = (event) => {
@@ -290,7 +284,6 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
 }
 else {
     console.error('Speech recognition not supported in this browser.');
-    op.innerHTML = "shitt second";
 }
 
 
