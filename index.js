@@ -257,9 +257,11 @@ moon.addEventListener('click', function (e) {
     }
 })
 let Instructions = document.querySelector(".instruction_box")
-setTimeout(() => {
+let cancelbutton = document.querySelector(".cancel_button");
+cancelbutton.addEventListener("click", () => {
+    cancelbutton.style.display = "none";
     Instructions.style.display = "none";
-}, 5000);
+})
 const voiceCommandButton = document.getElementById('voice-command-button');
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log("speech synthesis is working ")
