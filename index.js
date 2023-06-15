@@ -247,7 +247,6 @@ moon.addEventListener('click', function (e) {
             e.style.boxShadow = '4px 6px 10px black';
         })
         navbar.style.border = '3px solid black';
-        // github.style.color = 'black';
         moon.style.background = 'black'
         moon.innerHTML = '🌑';
         check++;
@@ -258,24 +257,41 @@ moon.addEventListener('click', function (e) {
     }
 })
 
-// let state = true;
-// let dev = document.querySelector('.dev');
-// let code = document.querySelector('.code');
-// let no_dev = document.querySelector('.no_dev');
-// dev.addEventListener("click", function () {
-//     if (state) {
-//         code.style.display = "block";
-//         no_dev.style.display = "none";
-//         dev.innerHTML = "Normal";
-//         state = false;
-//     }
-//     else {
-//         code.style.display = "none";
-//         dev.innerHTML = "Dev. Mode";
-//         no_dev.style.display = "block";
-//         state = true;
-//     }
-// })
+// Check browser support for SpeechRecognition API
+const voiceCommandButton = document.getElementById('voice-command-button');
+let op = document.querySelector(".shitt");
+voiceCommandButton.addEventListener('click', ()=>{
+    op.innerHTML = "clicked"
+});
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    console.log("speech synthesis is working ")
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-IN';
+    op.innerHTML = "shitt secondone";
+    recognition.onstart = () => {
+        console.log('Voice command recognition started.');
+        op.innerHTML = "shitt but op";
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        console.log('Recognized command:', transcript);
+        document.querySelector('.input').value = transcript;
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+    };
+    const startVoiceRecognition = () => {
+        recognition.start();
+        console.log('Voice recognition started.');
+    };
+    voiceCommandButton.addEventListener('click', startVoiceRecognition);
+}
+else {
+    console.error('Speech recognition not supported in this browser.');
+    op.innerHTML = "shitt second";
+}
 
 
 
