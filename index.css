@@ -326,7 +326,7 @@ h1 , h2{
 }
 #voice-command-button{
     position: fixed;
-    bottom :7%;
+    bottom :9%;
     right: 4%;
     font-size: 22px;
     width: 50px;
@@ -346,15 +346,18 @@ h1 , h2{
 }
 .cancel_button{
     position: fixed;
-    bottom :22%;
+    bottom :21.6%;
     right: 4%;
     font-size: 12px;
     z-index: 9999999999;
     background-color: #fab005;
     font-weight: bolder;
     box-shadow: 0px 0px 0px;
-    border: 1px solid black;
-    border-radius : 1000px ;
+    border: 0px solid black;
+    /* border-radius : 1000px ; */
+}
+button:hover{
+    cursor: pointer;
 }
 
 @media screen and (max-width: 581px) {
