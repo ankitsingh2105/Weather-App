@@ -264,7 +264,6 @@ cancelbutton.addEventListener("click", () => {
 })
 const voiceCommandButton = document.getElementById('voice-command-button');
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-    console.log("speech synthesis is working ")
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'en-IN';
     recognition.onstart = () => {
@@ -281,6 +280,11 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
         console.error('Speech recognition error:', event.error);
     };
     const startVoiceRecognition = () => {
+        Toastify({
+            text: '~ Say the word we are listening ~',
+            duration: 3000, 
+            position: 'center',
+          }).showToast();
         recognition.start();
         console.log('Voice recognition started.');
     };
@@ -289,6 +293,8 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
 else {
     console.error('Speech recognition not supported in this browser.');
 }
+
+
 
 
 
