@@ -263,37 +263,50 @@ cancelbutton.addEventListener("click", () => {
     Instructions.style.display = "none";
 })
 const voiceCommandButton = document.getElementById('voice-command-button');
+
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'en-IN';
-    recognition.onstart = () => {
-        console.log('Voice command recognition started.');
-    };
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-IN';
 
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript.toLowerCase();
-        console.log('Recognized command:', transcript);
-        document.querySelector('.input').value = transcript;
-    };
+  recognition.onstart = () => {
+    console.log('Voice command recognition started.');
+  };
 
-    recognition.onerror = (event) => {
-        console.error('Speech recognition error:', event.error);
-    };
-    const startVoiceRecognition = () => {
-        recognition.start();
-        console.log('Voice recognition started.');
-        Toastify({
-            text: '~ Say the word we are listening ~',
-            duration: 4000,
-            position: 'center',
-        }).showToast();
-    };
-    voiceCommandButton.addEventListener('click', startVoiceRecognition);
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript.toLowerCase();
+    console.log('Recognized command:', transcript);
+    document.querySelector('.input').value = transcript;
+  };
+
+  recognition.onerror = (event) => {
+    console.error('Speech recognition error:', event.error);
+  };
+
+  const startVoiceRecognition = () => {
+    recognition.start();
+    const audio = new Audio("sound.wav");
+    audio.play();
+    console.log('Voice recognition started.');
+    Toastify({
+      text: '~ Say the word we are listening ~',
+      duration: 4200,
+      position: 'center',
+    }).showToast();
+
+    // Stop recognition after 4 seconds
+    setTimeout(() => {
+      recognition.stop();
+      console.log('Voice recognition stopped.');
+    }, 4000);
+  };
+
+  voiceCommandButton.addEventListener('click', startVoiceRecognition);
 }
+
 else {
     Toastify({
         text: '~ Speech recognition not supported in this browser. ~',
-        duration: 4000, 
+        duration: 4000,
         position: 'center',
     }).showToast();
 }
