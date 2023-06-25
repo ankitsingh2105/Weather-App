@@ -300,27 +300,6 @@ else {
 
 
 
-function askNotificationPermission() {
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission().then(permission => {
-        if (permission === "granted") {
-          sendNotification("New Update", "Hi, there we recently added voice command in our web app, dont't forget to try that out");
-        }
-    });
-} else {
-    sendNotification("Sunny Mountains App : New Update", "Hi, there we recently added voice command in our web app, dont't forget to try that out.");
-    }
-  }
-  
-  function sendNotification(title, body) {
-    if (Notification.permission === "granted") {
-      const notification = new Notification(title, { body });
-    }
-  }
-  
-  askNotificationPermission(); 
-
-
 
 
 
