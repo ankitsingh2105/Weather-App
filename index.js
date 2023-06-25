@@ -280,19 +280,45 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
         console.error('Speech recognition error:', event.error);
     };
     const startVoiceRecognition = () => {
-        Toastify({
-            text: '~ Say the word we are listening ~',
-            duration: 3000, 
-            position: 'center',
-          }).showToast();
         recognition.start();
         console.log('Voice recognition started.');
+        Toastify({
+            text: '~ Say the word we are listening ~',
+            duration: 4000,
+            position: 'center',
+        }).showToast();
     };
     voiceCommandButton.addEventListener('click', startVoiceRecognition);
 }
 else {
-    console.error('Speech recognition not supported in this browser.');
+    Toastify({
+        text: '~ Speech recognition not supported in this browser. ~',
+        duration: 4000, 
+        position: 'center',
+    }).showToast();
 }
+
+
+
+function askNotificationPermission() {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          sendNotification("New Update", "Hi, there we recently added voice command in our web app, dont't forget to try that out");
+        }
+    });
+} else {
+    sendNotification("Sunny Mountains App : New Update", "Hi, there we recently added voice command in our web app, dont't forget to try that out.");
+    }
+  }
+  
+  function sendNotification(title, body) {
+    if (Notification.permission === "granted") {
+      const notification = new Notification(title, { body });
+    }
+  }
+  
+  askNotificationPermission(); 
 
 
 
